@@ -1,0 +1,32 @@
+---
+import type { Navigation } from "./types";
+import HamburgerMenu from "./HamburgerMenu.astro";
+
+interface Props {
+  navigation: Navigation;
+}
+
+const { navigation } = Astro.props;
+---
+
+<header class="w-full lg:max-w-6xl lg:mx-auto px-4">
+  <div class="flex justify-between items-center h-16">
+    <div class=""><a href="/">Beta Permanente</a></div>
+    <!-- desktop nav -->
+    <nav class="hidden md:block">
+      <ul class="flex gap-4">
+        {
+          navigation.es.map((item) => (
+            <li class="">
+              <a href={item.href}>{item.label}</a>
+            </li>
+          ))
+        }
+        <!-- TODO: theme switcher -->
+        <!-- TODO: lang switcher -->
+      </ul>
+    </nav>
+    <!-- mobile nav -->
+    <HamburgerMenu navigation={navigation} />
+  </div>
+</header>
