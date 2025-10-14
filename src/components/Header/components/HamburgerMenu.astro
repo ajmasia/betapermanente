@@ -61,10 +61,11 @@ const { navigation } = Astro.props;
   let active = false;
 
   const btn = document.getElementById("menu-toggle");
+  const mobileNav = document.getElementById("mobile-nav");
+
   const line1 = document.querySelector(".menu-line-1");
   const line2 = document.querySelector(".menu-line-2");
   const line3 = document.querySelector(".menu-line-3");
-  const mobileNav = document.getElementById("mobile-nav");
 
   // Update menu UI and accessibility attributes based on state
   function setActive(state: boolean) {
@@ -93,18 +94,8 @@ const { navigation } = Astro.props;
     }
   }
 
-  // Handle menu button click and blur events
+  // Handle menu button click
   if (btn) {
     btn.addEventListener("click", () => setActive(!active));
-    btn.addEventListener("blur", () => setActive(false));
   }
-
-  // Close menu when clicking outside the button
-  document.addEventListener("click", (e) => {
-    if (!btn || !active) return;
-    if (!(e.target instanceof Node)) return;
-    if (!btn.contains(e.target)) {
-      setActive(false);
-    }
-  });
 </script>
