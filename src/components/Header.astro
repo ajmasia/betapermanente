@@ -1,5 +1,20 @@
 ---
-import { navigationData } from "../config/navigation";
+interface NavItem {
+  label: string;
+  href: string;
+  children?: NavItem[];
+}
+
+export interface Navigation {
+  es: NavItem[];
+  en?: NavItem[];
+}
+
+interface Props {
+  navigation: Navigation;
+}
+
+const { navigation } = Astro.props;
 ---
 
 <header>
@@ -7,12 +22,14 @@ import { navigationData } from "../config/navigation";
   <nav class="header__nav">
     <ul class="header__nav-list">
       {
-        navigationData.es.map((item) => (
+        navigation.es.map((item) => (
           <li class="header__nav-item">
             <a href={item.href}>{item.label}</a>
           </li>
         ))
       }
+      <!-- TODO: Theme switcher -->
+      <!-- TODO: Lang switcher -->
     </ul>
   </nav>
 </header>
