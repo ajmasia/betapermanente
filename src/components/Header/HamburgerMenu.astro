@@ -9,7 +9,13 @@ const { navigation } = Astro.props;
 ---
 
 <nav class="md:hidden">
-  <button id="menu-toggle" class="relative group" aria-expanded="false">
+  <button
+    id="menu-toggle"
+    class="relative group"
+    aria-expanded="false"
+    aria-controls="mobile-nav"
+    type="button"
+  >
     <div
       class="relative flex overflow-hidden items-center justify-center rounded-full w-[36px] h-[36px] transform transition-all bg-slate-700 ring-0 ring-gray-300 hover:ring-6 group-focus:ring-4 ring-opacity-30 duration-200 shadow-md"
     >
@@ -51,51 +57,50 @@ const { navigation } = Astro.props;
 </nav>
 
 <script>
-  let active: boolean = false;
+  // Track menu state (open/closed)
+  let active = false;
 
   const btn = document.getElementById("menu-toggle");
-
   const line1 = document.querySelector(".menu-line-1");
   const line2 = document.querySelector(".menu-line-2");
   const line3 = document.querySelector(".menu-line-3");
-
   const mobileNav = document.getElementById("mobile-nav");
 
-  function toggleMobileNav(show: boolean) {
-    if (mobileNav) {
-      // mobileNav.style.display = show ? "flex" : "none";
-      mobileNav.classList.toggle("opacity-100", show);
-      mobileNav.classList.toggle("pointer-events-auto", show);
-      mobileNav.classList.toggle("opacity-0", !show);
-      mobileNav.classList.toggle("pointer-events-none", !show);
-    }
-  }
-
+  // Update menu UI and accessibility attributes based on state
   function setActive(state: boolean) {
     active = state;
 
     if (btn) btn.setAttribute("aria-expanded", active ? "true" : "false");
 
+    // Animate hamburger icon lines
     if (line1 && line2 && line3) {
       line1.classList.toggle("rotate-[42deg]", active);
       line1.classList.toggle("w-2/3", active);
 
-      line2.classList.toggle("opacity-0", active); // Oculta la línea central
-      line2.classList.toggle("scale-x-0", active); // Alternativamente, puedes usar esto
+      line2.classList.toggle("opacity-0", active);
+      line2.classList.toggle("scale-x-0", active);
 
       line3.classList.toggle("-rotate-[42deg]", active);
       line3.classList.toggle("w-2/3", active);
     }
 
-    toggleMobileNav(active);
+    // Show or hide mobile navigation menu
+    if (mobileNav) {
+      mobileNav.classList.toggle("opacity-100", active);
+      mobileNav.classList.toggle("pointer-events-auto", active);
+      mobileNav.classList.toggle("opacity-0", !active);
+      mobileNav.classList.toggle("pointer-events-none", !active);
+    }
   }
 
+  // Handle menu button click and blur events
   if (btn) {
     btn.addEventListener("click", () => setActive(!active));
     btn.addEventListener("blur", () => setActive(false));
   }
 
-  document.addEventListener("click", (e: MouseEvent) => {
+  // Close menu when clicking outside the button
+  document.addEventListener("click", (e) => {
     if (!btn || !active) return;
     if (!(e.target instanceof Node)) return;
     if (!btn.contains(e.target)) {
