@@ -1,6 +1,6 @@
 ---
 import type { Navigation } from "./types";
-import HamburgerMenu from "./components/HamburgerMenu.astro";
+import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
 
 interface Props {
   navigation: Navigation;
@@ -9,12 +9,18 @@ interface Props {
 const { navigation } = Astro.props;
 ---
 
-<header class="w-full lg:max-w-6xl lg:mx-auto px-4">
-  <div class="flex justify-between items-center h-16">
-    <div class=""><a href="/">Beta Permanente</a></div>
-    <!-- desktop nav -->
-    <nav class="hidden md:block">
-      <ul class="flex gap-4">
+<header class="lg:flex p-5 gap-5 px-4">
+  <Astronav>
+    <div class="flex w-full justify-between h-16">
+      <div class="flex items-center"><a href="/">BetaPermamte</a></div>
+      <div class="self-center block lg:hidden pt-1">
+        <MenuIcon class="w-6 h-6 text-gray-800" />
+      </div>
+    </div>
+    <MenuItems class="hidden lg:flex">
+      <ul
+        class="flex flex-col lg:flex-row lg:gap-4 whitespace-nowrap lg:items-center"
+      >
         {
           navigation.es.map((item) => (
             <li class="">
@@ -22,11 +28,7 @@ const { navigation } = Astro.props;
             </li>
           ))
         }
-        <!-- TODO: theme switcher -->
-        <!-- TODO: lang switcher -->
       </ul>
-    </nav>
-    <!-- mobile nav -->
-    <HamburgerMenu navigation={navigation} />
-  </div>
+    </MenuItems>
+  </Astronav>
 </header>
