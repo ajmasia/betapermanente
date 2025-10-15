@@ -1,5 +1,5 @@
 ---
-title: "My Second Post"
+title: "Introducción a Astro"
 date: "Oct 15 2025"
 heroImage: "/assets/blog-placeholder-1.jpg"
 tags: ["dev", "astro"]
