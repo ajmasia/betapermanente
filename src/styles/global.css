@@ -8,3 +8,26 @@ body {
     @apply font-sans px-4 min-h-dvh flex flex-col;
 }
 
+#astronav-menu .astronav-toggle {
+  transition:
+    transform 0.35s ease,
+    opacity 0.35s ease;
+  transform-origin: center;
+  transform-box: fill-box;
+  opacity: 1;
+}
+
+#astronav-menu .astronav-toggle.hidden {
+  display: block !important;
+  opacity: 0;
+  transform: scale(0.6) rotate(-45deg);
+  pointer-events: none;
+}
+
+#astronav-menu .astronav-open-icon.hidden {
+  transform: scale(0.6) rotate(25deg);
+}
+
+#astronav-menu .astronav-close-icon:not(.hidden) {
+  transform: rotate(0deg) scale(1);
+}

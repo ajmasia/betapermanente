@@ -14,7 +14,35 @@ const { navigation } = Astro.props;
     <div class="flex w-full justify-between h-16">
       <div class="flex items-center"><a href="/">BetaPermamte</a></div>
       <div class="self-center block lg:hidden pt-1">
-        <MenuIcon class="w-6 h-6 text-gray-800" />
+        <button id="astronav-menu" aria-label="Toggle Menu">
+          <slot>
+            <svg
+              fill="currentColor"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              class="transition-all duration-300 ease-in-out"
+            >
+              <title>Toggle Menu</title>
+
+              <!-- X -->
+              <path
+                class="astronav-close-icon astronav-toggle hidden"
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M18.278 16.864a1 1 0 01-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 01-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 011.414-1.414l4.829 4.828 4.828-4.828a1 1 0 111.414 1.414l-4.828 4.829 4.828 4.828z"
+              ></path>
+
+              <!-- Hamburguesa -->
+              <path
+                class="astronav-open-icon astronav-toggle"
+                fill-rule="evenodd"
+                d="M4 5h16a1 1 0 010 2H4a1 1 0 110-2zm0 6h16a1 1 0 010 2H4a1 1 0 010-2zm0 6h16a1 1 0 010 2H4a1 1 0 010-2z"
+              ></path>
+            </svg>
+          </slot>
+        </button>
       </div>
     </div>
     <MenuItems class="hidden lg:flex">
@@ -32,3 +60,32 @@ const { navigation } = Astro.props;
     </MenuItems>
   </Astronav>
 </header>
+
+<style is:global>
+  /* Solo los paths dentro del #astronav-menu */
+  #astronav-menu .astronav-toggle {
+    transition:
+      transform 0.35s ease,
+      opacity 0.35s ease;
+    transform-origin: center;
+    transform-box: fill-box;
+    opacity: 1;
+  }
+
+  /* ⚠️ Limitamos el override de hidden SOLO a los iconos dentro del botón */
+  #astronav-menu .astronav-toggle.hidden {
+    display: block !important;
+    opacity: 0;
+    transform: scale(0.6) rotate(-45deg);
+    pointer-events: none;
+  }
+
+  /* Animaciones diferenciadas */
+  #astronav-menu .astronav-open-icon.hidden {
+    transform: scale(0.6) rotate(25deg);
+  }
+
+  #astronav-menu .astronav-close-icon:not(.hidden) {
+    transform: rotate(0deg) scale(1);
+  }
+</style>
