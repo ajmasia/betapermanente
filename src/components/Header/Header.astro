@@ -1,4 +1,6 @@
 ---
+import "./styles.css";
+
 import type { Navigation } from "./types";
 import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
 
@@ -9,7 +11,7 @@ interface Props {
 const { navigation } = Astro.props;
 ---
 
-<header class="lg:flex p-5 gap-5 px-4">
+<header class="p-5 gap-5 px-4 lg:flex">
   <Astronav>
     <div class="flex w-full justify-between h-16">
       <div class="flex items-center"><a href="/">BetaPermamte</a></div>
@@ -60,32 +62,3 @@ const { navigation } = Astro.props;
     </MenuItems>
   </Astronav>
 </header>
-
-<style is:global>
-  /* Solo los paths dentro del #astronav-menu */
-  #astronav-menu .astronav-toggle {
-    transition:
-      transform 0.35s ease,
-      opacity 0.35s ease;
-    transform-origin: center;
-    transform-box: fill-box;
-    opacity: 1;
-  }
-
-  /* ⚠️ Limitamos el override de hidden SOLO a los iconos dentro del botón */
-  #astronav-menu .astronav-toggle.hidden {
-    display: block !important;
-    opacity: 0;
-    transform: scale(0.6) rotate(-45deg);
-    pointer-events: none;
-  }
-
-  /* Animaciones diferenciadas */
-  #astronav-menu .astronav-open-icon.hidden {
-    transform: scale(0.6) rotate(25deg);
-  }
-
-  #astronav-menu .astronav-close-icon:not(.hidden) {
-    transform: rotate(0deg) scale(1);
-  }
-</style>
