@@ -14,7 +14,13 @@ const { navigation } = Astro.props;
 <header class="p-5 gap-5 px-4 w-full lg:flex lg:max-w-6xl lg:mx-auto">
   <Astronav>
     <div class="flex w-full justify-between h-16">
-      <div class="flex items-center"><a href="/">BetaPermamte</a></div>
+      <div class="flex items-center">
+        <a href="/">
+          <span class="text-3xl font-bold text-red-400">beta</span><span
+            class="px-0.5 text-xl text-slate-400">permanente</span
+          >
+        </a>
+      </div>
       <div class="self-center block lg:hidden pt-1">
         <button id="astronav-menu" aria-label="Toggle Menu">
           <slot>
