@@ -1,4 +1,6 @@
 ---
+import { ClientRouter } from "astro:transitions";
+
 import "@fontsource/inter";
 import "../../styles/global.css";
 import Header from "../../components/Header/Header.astro";
@@ -20,9 +22,12 @@ export const navigationData: Navigation = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Beta Permanente</title>
+    <ClientRouter />
   </head>
   <body>
     <Header navigation={navigationData} />
-    <slot />
+    <main>
+      <slot />
+    </main>
   </body>
 </html>

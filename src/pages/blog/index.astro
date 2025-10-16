@@ -13,7 +13,7 @@ const posts: BlogPost[] = await getCollection(
 ---
 
 <MainLayout>
-  <container class="p-5 gap-5 px-4 w-full lg:max-w-6xl lg:mx-auto">
+  <container>
     <h1 class="text-4xl font-bold mb-4">Last Posts!</h1>
     {
       posts.map((post) => (

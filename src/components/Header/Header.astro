@@ -11,7 +11,10 @@ interface Props {
 const { navigation } = Astro.props;
 ---
 
-<header class="p-5 gap-5 px-4 w-full lg:flex lg:max-w-6xl lg:mx-auto">
+<header
+  transition:animate="none"
+  class="p-5 gap-5 w-full lg:flex lg:max-w-6xl lg:mx-auto"
+>
   <Astronav>
     <div class="flex w-full justify-between h-16">
       <div class="flex items-center">
