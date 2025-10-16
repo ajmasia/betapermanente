@@ -69,11 +69,26 @@ const { navigation } = Astro.props;
         class="flex flex-col lg:flex-row lg:gap-4 whitespace-nowrap lg:items-center"
       >
         {
-          navigation.es.map((item) => (
-            <li class="">
-              <a href={item.href}>{item.label}</a>
-            </li>
-          ))
+          navigation.es.map((item) => {
+            const isActive =
+              Astro.url.pathname === item.href ||
+              (item.href !== "/" && Astro.url.pathname.startsWith(item.href));
+
+            return (
+              <li>
+                <a
+                  href={item.href}
+                  class={`transition-colors ${
+                    isActive
+                      ? "text-red-400 font-semibold transition-colors duration-300"
+                      : "text-slate-400 hover:dark:text-slate-200 hover:text-slate-600 transition-colors duration-300"
+                  }`}
+                >
+                  {item.label}
+                </a>
+              </li>
+            );
+          })
         }
       </ul>
     </MenuItems>
