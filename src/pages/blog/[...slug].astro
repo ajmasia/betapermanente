@@ -13,12 +13,12 @@ export const getStaticPaths = (async () => {
   const posts = await getCollection("blog");
   return posts.map((post: BlogPost) => ({
     params: { slug: post.slug },
-    props: { slug: post.slug }, // ✅ serializable y legible
+    props: { slug: post.slug },
   }));
 }) satisfies GetStaticPaths;
 
 const { slug } = Astro.props as Props;
-const post = await getEntry("blog", slug); // ✅ por slug
+const post = await getEntry("blog", slug);
 if (!post) throw new Error(`No existe el post: ${slug}`);
 
 const { Content } = await post.render();
