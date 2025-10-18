@@ -3,14 +3,22 @@ import MainLayout from "../layouts/MainLauout/MainLayout.astro";
 ---
 
 <MainLayout>
-  <container>
-    <h1 class="text-4xl font-bold mb-4">Bienvenido a Beta Permanante!</h1>
-    <p class="text-lg">
-      El blog personal de Antonio José Masiá, un espacio para explorar el mundo
-      de la tecnología, el software libre y la cultura digital desde una mirada
-      curiosa y humana. Aquí todo está en evolución: las ideas, los proyectos y
-      las versiones de uno mismo. Porque vivir en beta es aceptar que siempre
-      hay algo nuevo por descubrir.
-    </p>
-  </container>
+  <section class="container mx-auto">
+    <div class="text-center">
+      <h1
+        class="text-5xl font-semibold tracking-tight text-balance sm:text-7xl text-slate-600 dark:text-slate-400"
+      >
+        El blog personal en modo <span class="text-red-400">beta</span> de Antonio
+        Masiá
+      </h1>
+      <p
+        class="mt-8 text-lg font-medium text-pretty text-slate-500 sm:text-xl/8"
+      >
+        Un espacio para explorar el mundo de la tecnología, el software libre y
+        la cultura digital desde una mirada curiosa, donde todo está en
+        evolución: las ideas, los proyectos y las versiones de uno mismo. Porque
+        vivir en beta es aceptar que siempre hay algo nuevo por descubrir.
+      </p>
+    </div>
+  </section>
 </MainLayout>

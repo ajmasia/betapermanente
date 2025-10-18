@@ -13,7 +13,7 @@ const posts: BlogPost[] = await getCollection(
 ---
 
 <MainLayout>
-  <container>
+  <div class="container mx-auto">
     <h1 class="text-4xl font-bold mb-4">Last Posts!</h1>
     {
       posts.map((post) => (
@@ -34,5 +34,5 @@ const posts: BlogPost[] = await getCollection(
         </article>
       ))
     }
-  </container>
+  </div>
 </MainLayout>
