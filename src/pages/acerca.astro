@@ -46,43 +46,44 @@ import MainLayout from "../layouts/MainLauout/MainLayout.astro";
     <!-- Stack -->
     <section class="mt-8">
       <h2>Mi stack actual</h2>
-      <div class="overflow-x-auto">
-        <table
-          class="w-full text-left border-collapse border border-slate-200 dark:border-slate-700 text-sm"
-        >
-          <tbody>
-            <tr class="border-t border-slate-200 dark:border-slate-700">
-              <td class="py-2 font-medium text-slate-700 dark:text-slate-200"
-                >Lenguajes</td
-              >
-              <td>Python, Go, Bash</td>
-            </tr>
-            <tr class="border-t border-slate-200 dark:border-slate-700">
-              <td class="py-2 font-medium text-slate-700 dark:text-slate-200"
-                >Entorno</td
-              >
-              <td>Arch Linux, Neovim, tmux</td>
-            </tr>
-            <tr class="border-t border-slate-200 dark:border-slate-700">
-              <td class="py-2 font-medium text-slate-700 dark:text-slate-200"
-                >Infraestructura</td
-              >
-              <td>Docker, Kubernetes, Proxmox</td>
-            </tr>
-            <tr class="border-t border-slate-200 dark:border-slate-700">
-              <td class="py-2 font-medium text-slate-700 dark:text-slate-200"
-                >Control de versiones</td
-              >
-              <td>Git, GitHub</td>
-            </tr>
-            <tr class="border-t border-slate-200 dark:border-slate-700">
-              <td class="py-2 font-medium text-slate-700 dark:text-slate-200"
-                >Filosofía</td
-              >
-              <td>Automatizar, aprender, documentar</td>
-            </tr>
-          </tbody>
-        </table>
+
+      <div class="space-y-4 leading-relaxed">
+        <div>
+          <h3 class="font-medium text-slate-700 dark:text-slate-200">
+            Lenguajes de programación
+          </h3>
+          <p class="text-slate-500 dark:text-slate-400">
+            TypeScript, Node.js, Python, Lua y Bash
+          </p>
+        </div>
+
+        <div>
+          <h3 class="font-medium text-slate-700 dark:text-slate-200">
+            Tecnologías
+          </h3>
+          <p class="text-slate-500 dark:text-slate-400">
+            <span class="text-red-400">Git</span>, Docker, CI/CD, Nginx, API
+            REST, sistemas Linux
+          </p>
+        </div>
+
+        <div>
+          <h3 class="font-medium text-slate-700 dark:text-slate-200">
+            Entorno
+          </h3>
+          <p class="text-slate-500 dark:text-slate-400">
+            Debian, <span class="text-red-400">NixOS</span> y Proxmox
+          </p>
+        </div>
+
+        <div>
+          <h3 class="font-medium text-slate-700 dark:text-slate-200">
+            Filosofía
+          </h3>
+          <p class="text-slate-500 dark:text-slate-400">
+            Automatizar, aprender, documentar y compartir
+          </p>
+        </div>
       </div>
     </section>
 
