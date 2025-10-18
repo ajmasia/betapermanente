@@ -1,0 +1,160 @@
+---
+import MainLayout from "../layouts/MainLauout/MainLayout.astro";
+---
+
+<MainLayout>
+  <div class="container mx-auto">
+    <!-- Hero / Intro -->
+    <header>
+      <h1>Acerca de</h1>
+      <p class="text-lg leading-relaxed">
+        Me llamo <span class="font-medium text-slate-500 dark:text-slate-200"
+          >Antonio Masiá</span
+        >, desarrollador y entusiasta del software libre. Exploro cómo el
+        código, la tecnología y las ideas pueden mejorar la forma en que
+        aprendemos, creamos y compartimos conocimiento. Este blog, es la
+        bitácora de ese proceso: un espacio para aprender en público, iterar y
+        mantenerme siempre en movimiento.
+      </p>
+    </header>
+    <!-- Trayectoria -->
+    <section class="mt-8">
+      <h2>Trayectoria</h2>
+      <p class="leading-relaxed">
+        Llevo más de <span class="font-medium">10 años</span> trabajando en desarrollo
+        de software, especialmente en entornos
+        <span class="text-red-400">GNU/Linux</span> y proyectos
+        <span class="text-red-400">open source</span>. He participado en
+        proyectos relacionados con automatización, infraestructura, desarrollo
+        backend y herramientas para equipos técnicos.
+      </p>
+
+      <ul class="list-disc list-inside mt-4 space-y-1">
+        <li>Diseño de software limpio y mantenible</li>
+        <li>Automatización de procesos</li>
+        <li>Filosofía y cultura del software libre</li>
+        <li>
+          Inteligencia artificial aplicada al aprendizaje y la creatividad
+        </li>
+        <li>
+          Experimentación con entornos <span class="text-red-400">home lab</span
+          >
+        </li>
+      </ul>
+    </section>
+
+    <!-- Stack -->
+    <section class="mt-8">
+      <h2>Mi stack actual</h2>
+      <div class="overflow-x-auto">
+        <table
+          class="w-full text-left border-collapse border border-slate-200 dark:border-slate-700 text-sm"
+        >
+          <tbody>
+            <tr class="border-t border-slate-200 dark:border-slate-700">
+              <td class="py-2 font-medium text-slate-700 dark:text-slate-200"
+                >Lenguajes</td
+              >
+              <td>Python, Go, Bash</td>
+            </tr>
+            <tr class="border-t border-slate-200 dark:border-slate-700">
+              <td class="py-2 font-medium text-slate-700 dark:text-slate-200"
+                >Entorno</td
+              >
+              <td>Arch Linux, Neovim, tmux</td>
+            </tr>
+            <tr class="border-t border-slate-200 dark:border-slate-700">
+              <td class="py-2 font-medium text-slate-700 dark:text-slate-200"
+                >Infraestructura</td
+              >
+              <td>Docker, Kubernetes, Proxmox</td>
+            </tr>
+            <tr class="border-t border-slate-200 dark:border-slate-700">
+              <td class="py-2 font-medium text-slate-700 dark:text-slate-200"
+                >Control de versiones</td
+              >
+              <td>Git, GitHub</td>
+            </tr>
+            <tr class="border-t border-slate-200 dark:border-slate-700">
+              <td class="py-2 font-medium text-slate-700 dark:text-slate-200"
+                >Filosofía</td
+              >
+              <td>Automatizar, aprender, documentar</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Filosofía -->
+    <section class="mt-8">
+      <h2>Filosofía personal</h2>
+      <p class="leading-relaxed">
+        Creo en el <span class="text-red-400">aprendizaje continuo</span>, en la
+        <span class="text-red-400">transparencia del conocimiento</span> y en la
+        <span class="text-red-400">experimentación como método</span>. Para mí,
+        escribir, programar o compartir ideas no es un fin en sí mismo, sino una
+        forma de entender mejor el proceso.
+      </p>
+
+      <blockquote
+        class="border-l-4 border-red-400 pl-4 italic mt-6 text-slate-600 dark:text-slate-300"
+      >
+        “La tecnología, la curiosidad y el pensamiento crítico se encuentran en
+        este espacio para explorar cómo aprendemos, creamos y evolucionamos,
+        siempre en
+        <span class="text-red-400 font-semibold">modo beta permanente</span>.”
+      </blockquote>
+    </section>
+
+    <!-- Proyectos -->
+    <section class="mt-8">
+      <h2>Proyectos destacados</h2>
+      <ul class="space-y-2">
+        <li>
+          🧠 <a href="#" class="text-red-400 hover:underline">Proyecto A</a>:
+          herramienta open source para automatizar tareas en Linux.
+        </li>
+        <li>
+          ⚙️ <a href="#" class="text-red-400 hover:underline">Proyecto B</a>:
+          experimento con IA para análisis de texto.
+        </li>
+        <li>
+          💡 <a href="#" class="text-red-400 hover:underline">Proyecto C</a>:
+          infraestructura doméstica en un entorno <em>home lab</em>.
+        </li>
+      </ul>
+      <p class="mt-4 text-sm">
+        Más proyectos en la sección <a
+          href="/proyectos"
+          class="text-red-400 hover:underline">Proyectos</a
+        >.
+      </p>
+    </section>
+
+    <!-- Contacto -->
+    <section class="mt-8">
+      <h2>Contacto</h2>
+      <p class="leading-relaxed">
+        Si quieres conectar o colaborar, puedes encontrarme en:
+      </p>
+      <ul class="mt-2 space-y-1">
+        <li><a href="#" class="text-red-400 hover:underline">GitHub</a></li>
+        <li><a href="#" class="text-red-400 hover:underline">LinkedIn</a></li>
+        <li><a href="#" class="text-red-400 hover:underline">Mastodon</a></li>
+        <li>
+          <a
+            href="mailto:tunombre@dominio.com"
+            class="text-red-400 hover:underline">Email</a
+          >
+        </li>
+      </ul>
+    </section>
+
+    <!-- Footer quote -->
+    <footer class="pt-12 text-center italic text-slate-400">
+      “Nada está terminado, todo está aprendiendo.”
+      <span class="text-red-400 font-semibold">Beta Permanente</span>
+    </footer>
+  </div>
+</MainLayout>
