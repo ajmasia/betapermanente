@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+.hero__title {
+  @apply font-semibold tracking-tight text-balance;
+  @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl;
+  @apply text-slate-600 dark:text-slate-400;
+}
+
+.hero__description {
+  @apply sm:text-xl/8 xl:px-10 text-balance;
+}
+
+.hero__description--medium {
+  @apply font-medium;
+  @apply text-slate-500 dark:text-slate-400;
+}
+
+.hero__description--emphasis {
+  @apply font-semibold italic;
+  @apply text-slate-500 dark:text-slate-200;
+}

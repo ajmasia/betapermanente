@@ -1,27 +1,8 @@
 ---
 import MainLayout from "../layouts/MainLauout/MainLayout.astro";
+import Hero from "../components/Hero/Hero.astro";
 ---
 
 <MainLayout>
-  <section class="container mx-auto">
-    <div class="text-center">
-      <div
-        class="text-5xl font-semibold tracking-tight text-balance sm:text-7xl text-slate-600 dark:text-slate-400"
-      >
-        <span class="text-red-400">Beta</span> permanente
-      </div>
-      <p
-        class="mt-12 text-lg font-medium text-pretty text-slate-500 dark:text-slate-400 sm:text-xl/8 xl:px-10"
-      >
-        Comparto ideas y reflexiones sobre el impacto de la tecnología en el
-        plano de lo humano, porque en un mundo donde
-        <span class="italic font-semibold text-slate-500 dark:text-slate-200"
-          >las máquinas aprenden y las personas tan solo obedecen, <span
-            class="text-red-400">pensar</span
-          > se convierte en un acto de <span class="text-red-400">rebeldía</span
-          >. <!-- Aquí comparto <span class="font-semibold">ideas</span>, -->
-        </span>
-      </p>
-    </div>
-  </section></MainLayout
->
+  <Hero />
+</MainLayout>
