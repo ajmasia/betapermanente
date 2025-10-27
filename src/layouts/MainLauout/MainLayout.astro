@@ -16,6 +16,12 @@ export const navigationData: Navigation = {
     { label: "Acerca de", href: "/acerca" },
   ],
 };
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
 ---
 
 <!doctype html>
@@ -23,7 +29,7 @@ export const navigationData: Navigation = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Beta Permanente</title>
+    <title>{title}</title>
     <ClientRouter />
   </head>
   <body>
