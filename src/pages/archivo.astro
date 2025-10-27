@@ -1,8 +1,10 @@
 ---
+import { getPageTitle } from "../lib/navigation.ts";
+
 import MainLayout from "../layouts/MainLauout/MainLayout.astro";
 ---
 
-<MainLayout title="Beta Permanente: Archivo">
+<MainLayout title={getPageTitle(Astro.url.pathname)}>
   <div class="container mx-auto">
     <h1>Página de archivo</h1>
     <p class="text-lg">

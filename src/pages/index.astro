@@ -1,8 +1,10 @@
 ---
+import { getPageTitle } from "../lib/navigation.ts";
+
 import MainLayout from "../layouts/MainLauout/MainLayout.astro";
 import Hero from "../components/Hero.astro";
 ---
 
-<MainLayout title="Beta Permanente">
+<MainLayout title={getPageTitle(Astro.url.pathname)}>
   <Hero />
 </MainLayout>

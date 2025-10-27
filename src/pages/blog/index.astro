@@ -1,4 +1,6 @@
 ---
+import { getPageTitle } from "../../lib/navigation.ts";
+
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 
@@ -12,7 +14,7 @@ const posts: BlogPost[] = await getCollection(
 );
 ---
 
-<MainLayout title="Beta Permanente: Blog">
+<MainLayout title={getPageTitle(Astro.url.pathname)}>
   <div class="container mx-auto">
     <h1>Last Posts!</h1>
     {
