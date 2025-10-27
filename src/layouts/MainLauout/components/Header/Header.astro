@@ -1,14 +1,18 @@
 ---
 import "./styles.css";
 
-import type { Navigation } from "./types";
-import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
+import type { NavItem } from "../../../../config.ts";
+
+import { Astronav, MenuItems } from "astro-navbar";
 
 interface Props {
-  navigation: Navigation;
+  navigation: readonly NavItem[];
 }
 
 const { navigation } = Astro.props;
+
+const isActiveHref = (current: string, href: string) =>
+  current === href || (href !== "/" && current.startsWith(href));
 ---
 
 <header transition:animate="none" class="container mx-auto lg:flex pt-5">
@@ -70,10 +74,8 @@ const { navigation } = Astro.props;
       >
         <!-- class="flex flex-col lg:flex-row lg:gap-4 whitespace-nowrap lg:items-center" -->
         {
-          navigation.es.map((item) => {
-            const isActive =
-              Astro.url.pathname === item.href ||
-              (item.href !== "/" && Astro.url.pathname.startsWith(item.href));
+          navigation.map((item) => {
+            const isActive = isActiveHref(Astro.url.pathname, item.href);
 
             return (
               <li>
@@ -85,7 +87,7 @@ const { navigation } = Astro.props;
                       : "text-slate-400 hover:dark:text-slate-200 hover:text-slate-600 transition-colors duration-300"
                   }`}
                 >
-                  {item.label}
+                  {item.name}
                 </a>
               </li>
             );
