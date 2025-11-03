@@ -10,7 +10,7 @@ type BlogPost = CollectionEntry<"blog">;
 
 const posts: BlogPost[] = await getCollection(
   "blog",
-  ({ data }: BlogPost) => !data.draft && data.lang === "es",
+  ({ data }: BlogPost) => data.draft !== true && data.lang == "es",
 );
 ---
 
@@ -25,14 +25,15 @@ const posts: BlogPost[] = await getCollection(
               {post.data.title}
             </a>
           </h2>
-          <p class="text-gray-600 text-sm mb-4">
-            {new Date(post.data.date).toLocaleDateString("en-ES", {
+          {post.data.description && <p>{post.data.description}</p>}
+          <p class="text-gray-600 text-sm my-4">
+            {post.data.date.toLocaleDateString("es-ES", {
+              weekday: "long",
               year: "numeric",
               month: "long",
               day: "numeric",
             })}
           </p>
-          <p class="text-gray-800">{post.data.description}</p>
         </article>
       ))
     }

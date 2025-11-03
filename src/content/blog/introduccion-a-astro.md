@@ -1,5 +1,6 @@
 ---
 title: "Introducción a Astro"
+description: "Descubre Astro, el framework que combina la velocidad del HTML estático con la flexibilidad de React, Vue o Svelte. Crea sitios ultrarrápidos con menos JavaScript, integra Markdown fácilmente y añade solo los componentes interactivos que realmente necesitas."
 date: "Oct 15 2025"
 heroImage: "/assets/blog-placeholder-1.jpg"
 tags: ["dev", "astro"]
