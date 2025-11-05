@@ -8,6 +8,10 @@
     "preview": "astro preview",
     "astro": "astro"
   },
+  "packageManager": "npm@11.6.1",
+  "engines": {
+    "node": "24.11.0"
+  },
   "dependencies": {
     "@fontsource/inter": "^5.2.8",
     "@tailwindcss/vite": "^4.1.14",
