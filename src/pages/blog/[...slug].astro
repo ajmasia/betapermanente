@@ -4,6 +4,7 @@ import { getCollection, getEntry, type CollectionEntry } from "astro:content";
 import type { GetStaticPaths } from "astro";
 
 import MainLayout from "../../layouts/MainLayout/MainLayout.astro";
+import { SITE } from "../../config.ts";
 
 type BlogPost = CollectionEntry<"blog">;
 
@@ -22,9 +23,10 @@ const post = await getEntry("blog", slug);
 if (!post) throw new Error(`No existe el post: ${slug}`);
 
 const { Content } = await post.render();
+const pageTitle = `${SITE.title}: ${post.data.title}`;
 ---
 
-<MainLayout>
+<MainLayout title={pageTitle}>
   <article class="container mx-auto">
     <Prose>
       <Content />
