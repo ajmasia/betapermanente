@@ -4,6 +4,7 @@ import "./styles.css";
 import type { NavItem } from "../../../../config.ts";
 
 import { Astronav, MenuItems } from "astro-navbar";
+import ThemeToggle from "../../../../components/ThemeToggle.astro";
 
 interface Props {
   navigation: readonly NavItem[];
@@ -41,31 +42,34 @@ const isActiveHref = (current: string, href: string) =>
           </div>
         </a>
       </div>
-      <div class="self-center block lg:hidden pt-1">
-        <button id="astronav-menu" aria-label="Toggle Menu">
-          <slot>
-            <svg
-              fill="currentColor"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-              class="transition-all duration-300 ease-in-out"
-            >
-              <path
-                class="astronav-close-icon astronav-toggle hidden"
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M18.278 16.864a1 1 0 01-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 01-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 011.414-1.414l4.829 4.828 4.828-4.828a1 1 0 111.414 1.414l-4.828 4.829 4.828 4.828z"
-              ></path>
-              <path
-                class="astronav-open-icon astronav-toggle"
-                fill-rule="evenodd"
-                d="M4 5h16a1 1 0 010 2H4a1 1 0 110-2zm0 6h16a1 1 0 010 2H4a1 1 0 010-2zm0 6h16a1 1 0 010 2H4a1 1 0 010-2z"
-              ></path>
-            </svg>
-          </slot>
-        </button>
+      <div class="flex items-center gap-2">
+        <ThemeToggle />
+        <div class="self-center block lg:hidden pt-1">
+          <button id="astronav-menu" aria-label="Toggle Menu">
+            <slot>
+              <svg
+                fill="currentColor"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                class="transition-all duration-300 ease-in-out"
+              >
+                <path
+                  class="astronav-close-icon astronav-toggle hidden"
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M18.278 16.864a1 1 0 01-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 01-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 011.414-1.414l4.829 4.828 4.828-4.828a1 1 0 111.414 1.414l-4.828 4.829 4.828 4.828z"
+                ></path>
+                <path
+                  class="astronav-open-icon astronav-toggle"
+                  fill-rule="evenodd"
+                  d="M4 5h16a1 1 0 010 2H4a1 1 0 110-2zm0 6h16a1 1 0 010 2H4a1 1 0 010-2zm0 6h16a1 1 0 010 2H4a1 1 0 010-2z"
+                ></path>
+              </svg>
+            </slot>
+          </button>
+        </div>
       </div>
     </div>
     <MenuItems class="hidden lg:flex">

@@ -2,7 +2,8 @@
 title: "Introducción a Proxmox VE: Virtualización Simplificada para Profesionales"
 description: "Descubre qué es Proxmox VE, cómo funciona y por qué es una solución ideal para entornos de virtualización modernos."
 date: "Oct 15 2025"
-heroImage: "/assets/blog-placeholder-1.jpg"
+author: "ajmasia"
+heroImage: "/images/blog/proxmox-intro.jpg"
 tags: ["proxmox", "virtualización", "infraestructura", "devops"]
 lang: es
 draft: false
