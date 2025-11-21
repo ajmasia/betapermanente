@@ -1,0 +1,68 @@
+---
+// BackToTop Component
+---
+
+<button
+  id="back-to-top"
+  aria-label="Volver arriba"
+  class="fixed bottom-8 right-8 z-50 h-12 w-12 rounded-full bg-red-400 text-white shadow-lg transition-all duration-300 hover:bg-red-500 opacity-0 pointer-events-none"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke-width="2"
+    stroke="currentColor"
+    class="h-6 w-6 mx-auto"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M4.5 15.75l7.5-7.5 7.5 7.5"></path>
+  </svg>
+</button>
+
+<script>
+  const initBackToTop = () => {
+    const backToTopButton = document.getElementById("back-to-top");
+
+    if (!backToTopButton) return;
+
+    // Show/hide button based on scroll position
+    const toggleButtonVisibility = () => {
+      if (window.scrollY > 300) {
+        backToTopButton.classList.remove("opacity-0", "pointer-events-none");
+        backToTopButton.classList.add("opacity-100");
+      } else {
+        backToTopButton.classList.remove("opacity-100");
+        backToTopButton.classList.add("opacity-0", "pointer-events-none");
+      }
+    };
+
+    // Scroll to top smoothly
+    const scrollToTop = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    };
+
+    // Remove existing listeners to avoid duplicates
+    window.removeEventListener("scroll", toggleButtonVisibility);
+    backToTopButton.removeEventListener("click", scrollToTop);
+
+    // Add event listeners
+    window.addEventListener("scroll", toggleButtonVisibility);
+    backToTopButton.addEventListener("click", scrollToTop);
+
+    // Initial check
+    toggleButtonVisibility();
+  };
+
+  // Initialize on page load
+  initBackToTop();
+
+  // Reinitialize after View Transitions
+  document.addEventListener("astro:after-swap", initBackToTop);
+  document.addEventListener("astro:page-load", initBackToTop);
+</script>
