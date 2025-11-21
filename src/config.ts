@@ -4,7 +4,7 @@ export const SITE = {
   author: "Antonio Masiá",
   url: "https://betapermanente.dev",
   lang: "es",
-  image: "/images/og/og-default.jpg",
+  image: "/images/og/og-default.svg",
 } as const;
 
 export const NAVIGATION = [
