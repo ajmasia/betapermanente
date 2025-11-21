@@ -6,6 +6,10 @@ import type { CollectionEntry } from "astro:content";
 
 import MainLayout from "../../layouts/MainLayout/MainLayout.astro";
 import CalendarIcon from "../../components/icons/CalendarIcon.astro";
+import {
+  calculateReadingTime,
+  formatReadingTime,
+} from "../../lib/readingTime.ts";
 
 type BlogPost = CollectionEntry<"blog">;
 
@@ -20,7 +24,7 @@ posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
 <MainLayout title={getPageTitle(Astro.url.pathname)}>
   <div class="container mx-auto">
-    <h1>Last Posts!</h1>
+    <h1>Last Posts</h1>
     {
       posts.map((post) => (
         <article class="mb-8">
@@ -30,7 +34,7 @@ posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
             </a>
           </h2>
           {post.data.description && <p class="mb-2">{post.data.description}</p>}
-          <p class="text-slate-500 dark:text-slate-400 text-sm">
+          <p class="flex text-slate-500 dark:text-slate-400 text-sm items-center">
             <span class="inline-flex items-center gap-1">
               <CalendarIcon class="h-4 w-4 flex-shrink-0" />
               <span class="pt-0.5">
@@ -41,6 +45,8 @@ posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
                 })}
               </span>
             </span>
+            <span class="mx-2">·</span>
+            <span>{formatReadingTime(calculateReadingTime(post.body))}</span>
           </p>
         </article>
       ))
