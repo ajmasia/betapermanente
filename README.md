@@ -11,6 +11,34 @@ A Spanish-first personal blog focused on software development, technology, and c
 
 ---
 
+## 📑 Table of Contents
+
+- [✨ Features](#-features)
+- [🛠️ Tech Stack](#️-tech-stack)
+- [📋 Requirements](#-requirements)
+- [🚀 Getting Started](#-getting-started)
+- [📂 Project Structure](#-project-structure)
+- [⚙️ Configuration](#️-configuration)
+- [📝 Creating Content](#-creating-content)
+- [🔀 Git Workflow](#-git-workflow)
+  - [Branching Strategy](#branching-strategy)
+  - [Workflow Examples](#workflow-examples)
+  - [Commit Convention](#commit-convention)
+- [🏷️ Versioning Strategy](#️-versioning-strategy)
+  - [Version Increment Rules](#version-increment-rules)
+  - [Practical Versioning Scenarios](#practical-versioning-scenarios)
+  - [Quick Reference Table](#quick-reference-table)
+  - [Versioning Best Practices](#versioning-best-practices)
+- [🚢 Deployment](#-deployment)
+  - [Vercel (Automated)](#vercel-automated---current-setup)
+  - [Alternative Platforms](#alternative-platforms)
+- [🤝 Contributing](#-contributing)
+- [📄 License](#-license)
+- [👤 Author](#-author)
+- [🙏 Acknowledgments](#-acknowledgments)
+
+---
+
 ## ✨ Features
 
 - 🚀 **Lightning Fast** - Static site generation with Astro 5
