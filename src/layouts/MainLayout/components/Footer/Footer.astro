@@ -7,9 +7,7 @@ import { SITE } from "../../../../config.ts";
   <div class="container mx-auto flex flex-col gap-2">
     {/* copyright */}
     <div class="flex flex-wrap justify-center break-words text-center text-sm">
-      <span class="px-1">Todo el contenido de</span>
-      <a href={SITE.url} class="link px-1">{SITE.title}</a>
-      <span class="px-1">queda bajo licencia</span>
+      <span class="px-1">Contenido publicado bajo licencia</span>
       <a
         href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es"
         class="link px-1"
@@ -31,10 +29,24 @@ import { SITE } from "../../../../config.ts";
     <div
       class="flex flex-wrap justify-center items-center gap-1 text-xs text-slate-500 dark:text-slate-500"
     >
-      <span>{SITE.title}</span>
-      <span>v{version}</span>
+      <span>{SITE.title} v{version}</span>
       <span>·</span>
       <span>Desarrollado con Astro</span>
+      <span>·</span>
+      <span>
+        <a
+          href="https://github.com/ajmasia/permanentbeta.dev"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="link">Código</a
+        >
+        bajo Licencia <a
+          href="https://github.com/ajmasia/permanentbeta.dev/blob/main/LICENSE"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="link">GNU General Public License v3.0</a
+        >
+      </span>
     </div>
   </div>
 </footer>
