@@ -11,14 +11,12 @@
   <rect width="1200" height="630" fill="url(#grid)" opacity="0.5"/>
 
   <!-- Main content -->
-  <text x="600" y="280" font-family="system-ui, -apple-system, sans-serif" font-size="64" font-weight="700" fill="#f87171" text-anchor="middle">
-    Tailwind CSS
+  <text x="600" y="300" font-family="system-ui, -apple-system, sans-serif" font-size="72" font-weight="700" fill="#f87171" text-anchor="middle">
+    Juegos de guerra
   </text>
 
-  <text x="600" y="360" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="400" fill="#cbd5e1" text-anchor="middle">
-    Diseña interfaces modernas con rapidez y precisión
+  <text x="600" y="370" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="400" fill="#cbd5e1" text-anchor="middle">
+    Dpdonde todo empezó
   </text>
 
-  <!-- Bottom accent -->
-  <rect x="400" y="550" width="400" height="4" fill="#f87171" rx="2"/>
 </svg>
