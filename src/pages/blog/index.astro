@@ -24,7 +24,7 @@ posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
 <MainLayout title={getPageTitle(Astro.url.pathname)}>
   <div class="container mx-auto">
-    <h1>Last Posts</h1>
+    <h1>Blog</h1>
     {
       posts.map((post) => (
         <article class="mb-8">
