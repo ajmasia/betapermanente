@@ -23,7 +23,10 @@ const posts: BlogPost[] = await getCollection(
 posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
-<MainLayout title={getPageTitle(Astro.url.pathname)}>
+<MainLayout
+  title={getPageTitle(Astro.url.pathname)}
+  description="Artículos sobre desarrollo de software, tecnología y aprendizaje continuo"
+>
   <div class="container mx-auto">
     <h1>Blog</h1>
     {
