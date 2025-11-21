@@ -21,7 +21,7 @@ const {
   type = "website",
 } = Astro.props;
 
-const navigation: readonly NavItem[] = NAVIGATION;
+const navigation: readonly NavItem[] = NAVIGATION.filter((item) => item.enabled);
 const canonicalURL = new URL(Astro.url.pathname, SITE.url);
 const imageURL = new URL(image, SITE.url);
 ---
