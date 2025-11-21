@@ -1,20 +1,31 @@
 ---
-
+import { version } from "../../../../../package.json";
+import { SITE } from "../../../../config.ts";
 ---
 
 <footer class="py-10 bg-slate-100 dark:bg-gray-800 dark:text-slate-400">
-  <div class="container mx-auto flex flex-col px-20">
+  <div class="container mx-auto flex flex-col gap-2">
     {/* copyright */}
-    <div class="flex flex-wrap justify-center break-words text-center">
+    <div class="flex flex-wrap justify-center break-words text-center text-sm">
       <span class="px-1">Todo el contenido de</span>
-      <a href="https://betapermanente.dev" class="link px-1">Beta permanente</a>
+      <a href={SITE.url} class="link px-1">{SITE.title}</a>
       <span class="px-1">queda bajo licencia</span>
       <a
-        href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+        href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es"
         class="link px-1"
       >
         Creative Commons BY-NC-SA 4.0
       </a>
     </div>
+
+    {/* version and author */}
+    <div
+      class="flex flex-wrap justify-center items-center gap-1 text-xs text-slate-500 dark:text-slate-500"
+    >
+      <span>{SITE.title}</span>
+      <span>v{version}</span>
+      <span>·</span>
+      <span>Desarrollado con Astro</span>
+    </div>
   </div>
-</footer>
+</footer>:
