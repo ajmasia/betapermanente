@@ -9,7 +9,7 @@
 }
 
 body {
-  @apply flex flex-col;
+  @apply min-h-screen flex flex-col;
   @apply text-slate-500 dark:text-slate-400;
   @apply bg-white dark:bg-gray-900;
 }
