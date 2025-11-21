@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Sitemap: https://betapermanente.dev/sitemap-index.xml
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
