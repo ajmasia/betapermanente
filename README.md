@@ -584,24 +584,119 @@ git push origin main --tags
 
 ## 🚢 Deployment
 
-### Build
+This project is configured for **automatic deployment on Vercel** using the official Astro adapter.
 
-```bash
-npm run build
+### Vercel (Automated - Current Setup)
+
+The project uses `@astrojs/vercel` adapter configured in `astro.config.mjs`:
+
+```javascript
+import vercel from '@astrojs/vercel';
+
+export default defineConfig({
+  adapter: vercel(),
+  // ...
+});
 ```
 
-Output is generated in `./dist/` directory.
+#### **Automatic Deployment Workflow**
 
-### Deployment Platforms
+1. **Push to `main` branch**:
+   ```bash
+   git push origin main
+   ```
 
-This static site can be deployed to:
+2. **Vercel detects the push** and automatically:
+   - Installs dependencies (`npm install`)
+   - Builds the project (`npm run build`)
+   - Deploys to production
 
-- **Vercel** (recommended)
-- **Netlify**
-- **GitHub Pages**
-- **Cloudflare Pages**
+3. **Live in seconds** - Your changes are deployed automatically to `betapermanente.dev`
 
-Set the build command to `npm run build` and publish directory to `dist/`.
+#### **Setup (One-Time)**
+
+If deploying to Vercel for the first time:
+
+1. **Import repository** to Vercel dashboard
+2. **Configure project**:
+   - Framework Preset: **Astro**
+   - Build Command: `npm run build` (auto-detected)
+   - Output Directory: `.vercel/output` (adapter handles this)
+   - Node Version: `24.x`
+
+3. **Environment Variables** (if needed):
+   ```
+   SITE_URL=https://betapermanente.dev
+   ```
+
+4. **Connect Git repository** - Vercel will deploy automatically on every push to `main`
+
+#### **Preview Deployments**
+
+Vercel automatically creates preview deployments for:
+- Pull requests (each PR gets a unique URL)
+- Feature branches (optional, can be configured)
+
+Access preview URLs in Vercel dashboard or PR comments.
+
+---
+
+### Manual Build
+
+To build locally for testing:
+
+```bash
+# Production build
+npm run build
+
+# Preview production build
+npm run preview
+```
+
+Output is generated in `.vercel/output/` directory (handled by adapter).
+
+---
+
+### Alternative Platforms
+
+While optimized for Vercel, the project can be deployed to other platforms:
+
+#### **Netlify**
+```bash
+# Install Netlify adapter
+npm install @astrojs/netlify
+
+# Update astro.config.mjs
+import netlify from '@astrojs/netlify';
+export default defineConfig({
+  adapter: netlify(),
+});
+```
+
+#### **GitHub Pages**
+```bash
+# Use static adapter
+npm install @astrojs/static
+
+# Update astro.config.mjs for static output
+export default defineConfig({
+  output: 'static',
+});
+```
+
+#### **Cloudflare Pages**
+```bash
+# Install Cloudflare adapter
+npm install @astrojs/cloudflare
+
+# Update astro.config.mjs
+import cloudflare from '@astrojs/cloudflare';
+export default defineConfig({
+  adapter: cloudflare(),
+});
+```
+
+**Note:** Changing adapters may require adjustments to build configuration.
 
 ---
 
