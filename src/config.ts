@@ -15,9 +15,9 @@ export const NAVIGATION = [
 ] as const;
 
 export const SOCIAL = {
-  twitter: "https://twitter.com/juanperez",
-  github: "https://github.com/juanperez",
-  linkedin: "https://linkedin.com/in/juanperez",
+  twitter: "https://twitter.com/ajmasia",
+  github: "https://github.com/ajmasia",
+  linkedin: "https://linkedin.com/in/ajmasia",
 } as const;
 
 export type SiteConfig = typeof SITE;
