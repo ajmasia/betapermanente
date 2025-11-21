@@ -1,0 +1,59 @@
+---
+import type { CollectionEntry } from "astro:content";
+import CalendarIcon from "./icons/CalendarIcon.astro";
+import Tag from "./Tag.astro";
+import { calculateReadingTime, formatReadingTime } from "../lib/readingTime.ts";
+
+type BlogPost = CollectionEntry<"blog">;
+
+interface Props {
+  latestPosts: BlogPost[];
+}
+
+const { latestPosts } = Astro.props;
+---
+
+<section class="container mx-auto mt-16">
+  <div class="text-center mb-8">
+    <h2>Últimas Publicaciones</h2>
+    <a href="/blog" class="link text-sm">Ver todas →</a>
+  </div>
+
+  <div class="grid gap-8">
+    {
+      latestPosts.map((post) => (
+        <article>
+          <h3 class="text-2xl font-semibold mb-2">
+            <a href={`/blog/${post.slug}`} class="link">
+              {post.data.title}
+            </a>
+          </h3>
+          {post.data.description && (
+            <p class="mb-2">{post.data.description}</p>
+          )}
+          <p class="flex text-slate-500 dark:text-slate-400 text-sm items-center mb-2">
+            <span class="inline-flex items-center gap-1">
+              <CalendarIcon class="h-4 w-4 flex-shrink-0" />
+              <span class="pt-0.5">
+                {post.data.date.toLocaleDateString("es-ES", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </span>
+            </span>
+            <span class="mx-2">·</span>
+            <span>{formatReadingTime(calculateReadingTime(post.body))}</span>
+          </p>
+          {post.data.tags && post.data.tags.length > 0 && (
+            <div class="flex flex-wrap gap-2">
+              {post.data.tags.map((tag: string) => (
+                <Tag tag={tag} />
+              ))}
+            </div>
+          )}
+        </article>
+      ))
+    }
+  </div>
+</section>
