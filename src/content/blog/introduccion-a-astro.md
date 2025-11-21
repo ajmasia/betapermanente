@@ -8,8 +8,6 @@ lang: es
 draft: false
 ---
 
-# Introducción a Astro
-
 Astro es un framework moderno para construir sitios web incríblemente rápidos. Su filosofía principal se resume en **“Menos JavaScript, más velocidad”**, ya que genera HTML estático en el servidor y solo carga el JavaScript que realmente necesita en el navegador.
 
 A diferencia de otros frameworks SPA, Astro separa el contenido del comportamiento. Puedes usar componentes de **React**, **Vue**, **Svelte**, **Solid** o incluso **Web Components** dentro de un mismo proyecto, sin penalizar el rendimiento. Todo se compila a HTML estático por defecto, pero puedes **hidratar** solo los componentes interactivos cuando sea necesario.

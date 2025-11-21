@@ -8,8 +8,6 @@ lang: es
 draft: false
 ---
 
-## Tailwind CSS: Diseña Interfaces Modernas con Rapidez y Precisión
-
 Tailwind CSS se ha convertido en una de las herramientas más populares para el desarrollo frontend moderno. A diferencia de otros frameworks como Bootstrap, Tailwind no ofrece componentes predefinidos, sino una colección de **utilidades de bajo nivel** que permiten construir diseños personalizados sin salir del HTML.
 
 ### ¿Por qué usar Tailwind CSS?
