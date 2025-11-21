@@ -25,7 +25,7 @@ export const AUTHORS = {
   ajmasia: {
     id: "ajmasia",
     name: "Antonio Masiá",
-    bio: "Desarrollador de software apasionado por la tecnología y el aprendizaje continuo",
+    bio: "Full Stack Web Developer & Generative AI Enthusiast",
     avatar: "/images/avatars/ajmasia.jpg",
     social: {
       twitter: "https://twitter.com/ajmasia",
