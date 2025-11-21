@@ -4,7 +4,7 @@ export const SITE = {
   author: "Antonio Masiá",
   url: "https://betapermanente.dev",
   lang: "es",
-  image: "/og-image.jpg",
+  image: "/images/og/og-default.jpg",
 } as const;
 
 export const NAVIGATION = [
@@ -21,6 +21,22 @@ export const SOCIAL = {
   linkedin: "https://linkedin.com/in/ajmasia",
 } as const;
 
+export const AUTHORS = {
+  ajmasia: {
+    id: "ajmasia",
+    name: "Antonio Masiá",
+    bio: "Desarrollador de software apasionado por la tecnología y el aprendizaje continuo",
+    avatar: "/images/avatars/ajmasia.jpg",
+    social: {
+      twitter: "https://twitter.com/ajmasia",
+      github: "https://github.com/ajmasia",
+      linkedin: "https://linkedin.com/in/ajmasia",
+    },
+  },
+} as const;
+
 export type SiteConfig = typeof SITE;
 export type NavItem = (typeof NAVIGATION)[number];
 export type SocialLinks = typeof SOCIAL;
+export type AuthorId = keyof typeof AUTHORS;
+export type Author = (typeof AUTHORS)[AuthorId];

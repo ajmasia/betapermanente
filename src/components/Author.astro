@@ -1,0 +1,73 @@
+---
+import { AUTHORS, type AuthorId } from "../config.ts";
+
+interface Props {
+  authorId: AuthorId;
+}
+
+const { authorId } = Astro.props;
+const author = AUTHORS[authorId];
+
+if (!author) {
+  throw new Error(`Author with id "${authorId}" not found in config`);
+}
+---
+
+<aside
+  class="mt-12 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900"
+>
+  <div class="flex items-start gap-4">
+    {/* Avatar */}
+    <img
+      src={author.avatar}
+      alt={author.name}
+      class="w-16 h-16 rounded-full object-cover flex-shrink-0"
+    />
+
+    {/* Content */}
+    <div class="flex-1">
+      <h3 class="text-Slg font-semibold mb-1">{author.name}</h3>
+      <p class="text-sm text-slate-600 dark:text-slate-400 mb-1">
+        {author.bio}
+      </p>
+
+      {/* Social links */}
+      {
+        author.social && (
+          <div class="flex gap-4 text-sm">
+            {author.social.twitter && (
+              <a
+                href={author.social.twitter}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="link"
+              >
+                Twitter
+              </a>
+            )}
+            {author.social.github && (
+              <a
+                href={author.social.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="link"
+              >
+                GitHub
+              </a>
+            )}
+            {author.social.linkedin && (
+              <a
+                href={author.social.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="link"
+              >
+                LinkedIn
+              </a>
+            )}
+          </div>
+        )
+      }
+    </div>
+  </div>
+</aside>

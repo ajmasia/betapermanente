@@ -2,7 +2,8 @@
 title: "Tailwind CSS: Diseña Interfaces Modernas con Rapidez y Precisión"
 description: "Tailwind CSS transforma el diseño web con su enfoque de clases utilitarias. Crea interfaces modernas, personalizables y responsive directamente desde tu HTML, sin escribir CSS adicional. Mejora tu velocidad de desarrollo y mantiene un estilo visual coherente con facilidad."
 date: "Oct 16 2025"
-heroImage: "/assets/blog-placeholder-1.jpg"
+author: "ajmasia"
+heroImage: "/images/blog/tailwindcss-intro.jpg"
 tags: ["dev", "tailwindcss", "css"]
 lang: es
 draft: false

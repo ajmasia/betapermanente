@@ -7,6 +7,7 @@ import MainLayout from "../../layouts/MainLayout/MainLayout.astro";
 import { SITE } from "../../config.ts";
 import CalendarIcon from "../../components/icons/CalendarIcon.astro";
 import Tag from "../../components/Tag.astro";
+import Author from "../../components/Author.astro";
 import {
   calculateReadingTime,
   formatReadingTime,
@@ -72,5 +73,6 @@ const pageTitle = `${SITE.title}: ${post.data.title}`;
     <Prose>
       <Content />
     </Prose>
+    {post.data.author && <Author authorId={post.data.author} />}
   </article>
 </MainLayout>
