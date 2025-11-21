@@ -36,7 +36,9 @@ const pageTitle = `${SITE.title}: ${post.data.title}`;
   <article class="container mx-auto">
     <header class="mb-8">
       <h1 class="mb-2">{post.data.title}</h1>
-      <p class="flex text-slate-500 dark:text-slate-400 text-sm items-center">
+      <p
+        class="flex text-slate-500 dark:text-slate-400 text-sm items-center mb-2"
+      >
         <span class="inline-flex items-center gap-1">
           <CalendarIcon class="h-4 w-4 flex-shrink-0" />
           <span class="pt-0.5"
@@ -52,13 +54,15 @@ const pageTitle = `${SITE.title}: ${post.data.title}`;
         <span class="mx-2">·</span>
         <span>{formatReadingTime(calculateReadingTime(post.body))}</span>
       </p>
-      {post.data.tags && post.data.tags.length > 0 && (
-        <div class="flex flex-wrap gap-2 mt-4">
-          {post.data.tags.map((tag: string) => (
-            <Tag tag={tag} />
-          ))}
-        </div>
-      )}
+      {
+        post.data.tags && post.data.tags.length > 0 && (
+          <div class="flex flex-wrap gap-2">
+            {post.data.tags.map((tag: string) => (
+              <Tag tag={tag} />
+            ))}
+          </div>
+        )
+      }
     </header>
     <Prose>
       <Content />
