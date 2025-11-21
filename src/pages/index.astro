@@ -9,15 +9,15 @@ import type { CollectionEntry } from "astro:content";
 
 type BlogPost = CollectionEntry<"blog">;
 
-// Get latest 3 posts
+// Get latest 4 posts
 const posts: BlogPost[] = await getCollection(
   "blog",
   ({ data }: BlogPost) => data.draft !== true && data.lang == "es",
 );
 
-// Sort posts by date (most recent first) and take only 3
+// Sort posts by date (most recent first) and take only 4
 posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
-const latestPosts = posts.slice(0, 3);
+const latestPosts = posts.slice(0, 4);
 ---
 
 <MainLayout title={getPageTitle(Astro.url.pathname)}>

@@ -23,10 +23,29 @@ const { latestPosts } = Astro.props;
     </a>
   </div>
 
-  <div class="flex flex-wrap justify-center gap-8">
+  <div
+    class:list={[
+      "grid gap-8",
+      {
+        "grid-cols-1": latestPosts.length === 1,
+        "grid-cols-1 lg:grid-cols-2": latestPosts.length === 2,
+        "grid-cols-1 lg:grid-cols-2 xl:grid-cols-3": latestPosts.length >= 3,
+      },
+    ]}
+  >
     {
-      latestPosts.map((post) => (
-        <article class="w-full md:max-w-[calc(50%-1rem)] lg:max-w-[calc(33.333%-1.333rem)] p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900">
+      latestPosts.map((post, index) => (
+        <article
+          class:list={[
+            "p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900",
+            {
+              "lg:hidden xl:block": index === 2 && latestPosts.length === 3,
+            },
+            {
+              "xl:hidden": index === 3 && latestPosts.length >= 4,
+            },
+          ]}
+        >
           <h3 class="text-2xl font-semibold mb-2">
             <a href={`/blog/${post.slug}`} class="link">
               {post.data.title}
