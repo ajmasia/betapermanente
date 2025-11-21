@@ -235,41 +235,350 @@ Your content here...
 
 ## 🔀 Git Workflow
 
-This project follows **Git Flow** with semantic commits:
+This project uses a **simplified GitHub Flow** optimized for solo development and frequent content publishing.
 
 ### Branching Strategy
 
 ```
-main              → Production-ready code
-develop           → Integration branch
-release/vX.X.X    → Release preparation
-feature/[name]    → Feature branches
+main              → Production (only permanent branch)
+feature/[name]    → New features/improvements (temporary)
+content/[slug]    → Complex blog posts (temporary, optional)
+hotfix/[issue]    → Urgent production fixes (temporary)
 ```
+
+**Key principles:**
+- `main` is the **only permanent branch**
+- All work merges directly to `main`
+- Tags mark releases on `main`
+- Quick posts can be committed directly to `main`
+
+---
+
+### Workflow Examples
+
+#### **Publishing a Blog Post (Simple)**
+
+For quick posts or updates:
+
+```bash
+# 1. Work on main
+git checkout main
+
+# 2. Create/edit post in src/content/blog/
+# Set draft: false when ready
+
+# 3. Commit and push
+git add src/content/blog/my-new-post.md
+git commit -m "content: add Docker basics guide"
+git push origin main
+
+# 4. Optional: Tag the release
+git tag v1.0.1 -m "content: Docker basics guide"
+git push origin main --tags
+```
+
+#### **Publishing a Complex Post (With Branch)**
+
+For posts requiring multiple days or review:
+
+```bash
+# 1. Create content branch
+git checkout main
+git checkout -b content/kubernetes-deep-dive
+
+# 2. Work on the post over multiple sessions
+git commit -m "content: draft Kubernetes guide"
+git commit -m "content: add examples to K8s guide"
+git commit -m "content: finalize Kubernetes guide"
+
+# 3. Merge to main
+git checkout main
+git merge content/kubernetes-deep-dive
+git push origin main
+
+# 4. Clean up
+git branch -d content/kubernetes-deep-dive
+
+# 5. Optional: Tag release
+git tag v1.0.2 -m "content: Kubernetes deep dive"
+git push origin --tags
+```
+
+#### **Developing a New Feature**
+
+For new functionality (search, lazy loading, etc.):
+
+```bash
+# 1. Create feature branch
+git checkout main
+git checkout -b feature/lazy-loading
+
+# 2. Develop the feature
+git commit -m "feat: add lazy loading to images"
+git commit -m "feat: optimize image loading performance"
+
+# 3. Merge to main
+git checkout main
+git merge feature/lazy-loading
+git push origin main
+
+# 4. Tag as minor release
+git tag v1.1.0 -m "feat: lazy loading images"
+git push origin --tags
+
+# 5. Clean up
+git branch -d feature/lazy-loading
+```
+
+#### **Hotfix in Production**
+
+For urgent fixes:
+
+```bash
+# 1. Create hotfix branch from main
+git checkout main
+git checkout -b hotfix/fix-rss-encoding
+
+# 2. Fix the issue
+git commit -m "fix: correct RSS feed character encoding"
+
+# 3. Merge back to main
+git checkout main
+git merge hotfix/fix-rss-encoding
+git push origin main
+
+# 4. Tag as patch release
+git tag v1.0.3 -m "fix: RSS encoding issue"
+git push origin --tags
+
+# 5. Clean up
+git branch -d hotfix/fix-rss-encoding
+```
+
+---
 
 ### Commit Convention
 
 Uses [Conventional Commits](https://www.conventionalcommits.org/) enforced by Commitlint:
 
+| Type | Description | Version Impact |
+|------|-------------|----------------|
+| `feat:` | New feature | MINOR (v1.X.0) |
+| `fix:` | Bug fix | PATCH (v1.0.X) |
+| `content:` | Blog post | PATCH (v1.0.X) |
+| `docs:` | Documentation only | - |
+| `style:` | Code formatting | - |
+| `refactor:` | Code restructuring | - |
+| `perf:` | Performance improvement | MINOR/PATCH |
+| `test:` | Add/update tests | - |
+| `chore:` | Maintenance tasks | - |
+
+**Examples:**
 ```bash
-feat: add new feature
-fix: correct bug
-docs: update documentation
-style: format code
-refactor: restructure code
-perf: improve performance
-test: add tests
-chore: update dependencies
+git commit -m "feat: add full-text search"
+git commit -m "fix: correct blog post sorting"
+git commit -m "content: add introduction to Docker"
+git commit -m "docs: update README with git workflow"
+git commit -m "chore: update dependencies"
 ```
 
-**Example:**
-```bash
-git commit -m "feat: add RSS feed discovery link"
+**Commit message format:**
 ```
+<type>: <subject>
+
+[optional body]
+
+[optional footer]
+```
+
+---
 
 ### Git Hooks
 
-- **commit-msg**: Validates commit message format
-- **pre-commit**: Runs linting (future)
+- **commit-msg**: Validates commit message format (active)
+- **pre-commit**: Runs linting (future implementation)
+
+---
+
+## 🏷️ Versioning Strategy
+
+This project follows **Semantic Versioning (SemVer)** adapted for a content-driven blog:
+
+```
+vMAJOR.MINOR.PATCH
+
+v1.2.3
+│ │ │
+│ │ └─── PATCH: Posts, bug fixes, minor tweaks
+│ └───── MINOR: New features, significant improvements
+└─────── MAJOR: Breaking changes, complete redesigns
+```
+
+### Version Increment Rules
+
+#### **PATCH (v1.0.X)** - Increment third number
+
+**When to use:**
+- ✅ Publishing a new blog post
+- ✅ Fixing bugs
+- ✅ Correcting typos
+- ✅ Minor CSS adjustments
+- ✅ Dependency updates (no breaking changes)
+
+**Examples:**
+```bash
+v1.0.0 → v1.0.1  # New post: "Docker Basics"
+v1.0.1 → v1.0.2  # Fix: RSS feed encoding
+v1.0.2 → v1.0.3  # New post: "Git Advanced"
+v1.0.3 → v1.0.4  # Fix: Typo in post slug
+```
+
+**Commands:**
+```bash
+git tag v1.0.1 -m "content: Docker basics post"
+git push origin --tags
+```
+
+---
+
+#### **MINOR (v1.X.0)** - Increment second number, reset PATCH
+
+**When to use:**
+- ✅ New feature implementation
+- ✅ New site section
+- ✅ Significant UX improvements
+- ✅ New integrations (search, comments, etc.)
+
+**Examples:**
+```bash
+v1.0.4 → v1.1.0  # Feature: Lazy loading images
+v1.1.0 → v1.2.0  # Feature: Full-text search
+v1.2.0 → v1.3.0  # Feature: Comment system
+v1.3.0 → v1.4.0  # Feature: Newsletter signup
+```
+
+**Commands:**
+```bash
+git tag v1.1.0 -m "feat: lazy loading images"
+git push origin --tags
+```
+
+---
+
+#### **MAJOR (vX.0.0)** - Increment first number, reset all
+
+**When to use:**
+- ✅ Complete site redesign
+- ✅ Framework migration (e.g., Astro → Next.js)
+- ✅ Breaking URL structure changes
+- ✅ Major rebranding
+
+**Examples:**
+```bash
+v1.4.0 → v2.0.0  # Complete site redesign
+v2.0.0 → v3.0.0  # Migration to different framework
+v3.0.0 → v4.0.0  # Major rebranding/domain change
+```
+
+**Commands:**
+```bash
+git tag v2.0.0 -m "feat: complete site redesign"
+git push origin --tags
+```
+
+---
+
+### Practical Versioning Scenarios
+
+#### **Scenario 1: Multiple posts in one week**
+
+**Option A - Tag each post** (recommended for active blogs):
+```bash
+# Monday
+git commit -m "content: add Docker basics"
+git tag v1.0.1 && git push origin main --tags
+
+# Wednesday
+git commit -m "content: add Kubernetes intro"
+git tag v1.0.2 && git push origin main --tags
+
+# Friday
+git commit -m "content: add CI/CD guide"
+git tag v1.0.3 && git push origin main --tags
+```
+
+**Option B - Batch tag at week end**:
+```bash
+# Mon, Wed, Fri - just commit and push
+git commit -m "content: add [post]" && git push
+
+# Friday end of day
+git tag v1.0.1 -m "content: 3 new posts this week"
+git push origin --tags
+```
+
+---
+
+#### **Scenario 2: Feature development + posts in parallel**
+
+```bash
+# Week 1-2: Develop feature in branch
+git checkout -b feature/search
+git commit -m "feat: implement search"
+# DON'T MERGE YET
+
+# Meanwhile: Publish posts on main
+git checkout main
+git commit -m "content: add new post"
+git tag v1.0.5 && git push origin main --tags
+
+# Week 3: Feature ready
+git checkout main
+git merge feature/search
+git tag v1.1.0 -m "feat: full-text search"
+git push origin main --tags
+```
+
+---
+
+#### **Scenario 3: Post + minor feature**
+
+```bash
+# Current version: v1.0.10
+
+# Add small feature (e.g., copy button in code blocks)
+git commit -m "feat: add copy button to code blocks"
+git tag v1.1.0  # MINOR bump (new feature)
+
+# Next post
+git commit -m "content: add Docker compose guide"
+git tag v1.1.1  # Continue from v1.1.0
+git push origin main --tags
+```
+
+---
+
+### Quick Reference Table
+
+| Change Type | Version Change | Command |
+|-------------|----------------|---------|
+| New blog post | v1.0.0 → v1.0.1 | `git tag v1.0.1` |
+| Bug fix | v1.0.1 → v1.0.2 | `git tag v1.0.2` |
+| New feature | v1.0.2 → v1.1.0 | `git tag v1.1.0` |
+| Another post | v1.1.0 → v1.1.1 | `git tag v1.1.1` |
+| Site redesign | v1.5.0 → v2.0.0 | `git tag v2.0.0` |
+
+---
+
+### Versioning Best Practices
+
+1. **Tag on main only** - Always create version tags after merging to main
+2. **Descriptive tag messages** - Use `git tag -a` with meaningful messages
+3. **Consistency** - Follow the rules consistently for predictability
+4. **When in doubt** - Ask: "Will users notice this as something new?"
+   - Yes → MINOR (v1.X.0)
+   - No → PATCH (v1.0.X)
+5. **Don't overthink** - For a personal blog, rough consistency is fine
 
 ---
 
