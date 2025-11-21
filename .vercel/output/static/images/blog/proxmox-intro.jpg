@@ -1,0 +1,24 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0f172a"/>
+
+  <!-- Grid pattern -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid)" opacity="0.5"/>
+
+  <!-- Main content -->
+  <text x="600" y="280" font-family="system-ui, -apple-system, sans-serif" font-size="64" font-weight="700" fill="#f87171" text-anchor="middle">
+    Introducción a Proxmox VE
+  </text>
+
+  <text x="600" y="360" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="400" fill="#cbd5e1" text-anchor="middle">
+    Virtualización simplificada para profesionales
+  </text>
+
+  <!-- Bottom accent -->
+  <rect x="400" y="550" width="400" height="4" fill="#f87171" rx="2"/>
+</svg>

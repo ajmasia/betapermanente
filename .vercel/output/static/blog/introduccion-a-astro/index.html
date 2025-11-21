@@ -1,0 +1,217 @@
+<!DOCTYPE html><html lang="es" class="dark"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Beta Permanente: Introducción a Astro</title><meta name="description" content="Descubre Astro, el framework que combina la velocidad del HTML estático con la flexibilidad de React, Vue o Svelte. Crea sitios ultrarrápidos con menos JavaScript, integra Markdown fácilmente y añade solo los componentes interactivos que realmente necesitas."><link rel="canonical" href="https://betapermanente.dev/blog/introduccion-a-astro/"><!-- Favicon --><link rel="icon" href="/favicon.svg" type="image/svg+xml"><!-- RSS Feed --><link rel="alternate" type="application/rss+xml" title="Beta Permanente RSS Feed" href="/rss.xml"><!-- Open Graph / Facebook --><meta property="og:type" content="article"><meta property="og:url" content="https://betapermanente.dev/blog/introduccion-a-astro/"><meta property="og:title" content="Beta Permanente: Introducción a Astro"><meta property="og:description" content="Descubre Astro, el framework que combina la velocidad del HTML estático con la flexibilidad de React, Vue o Svelte. Crea sitios ultrarrápidos con menos JavaScript, integra Markdown fácilmente y añade solo los componentes interactivos que realmente necesitas."><meta property="og:image" content="https://betapermanente.dev/images/blog/astro-intro.jpg"><meta property="og:site_name" content="Beta Permanente"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://betapermanente.dev/blog/introduccion-a-astro/"><meta property="twitter:title" content="Beta Permanente: Introducción a Astro"><meta property="twitter:description" content="Descubre Astro, el framework que combina la velocidad del HTML estático con la flexibilidad de React, Vue o Svelte. Crea sitios ultrarrápidos con menos JavaScript, integra Markdown fácilmente y añade solo los componentes interactivos que realmente necesitas."><meta property="twitter:image" content="https://betapermanente.dev/images/blog/astro-intro.jpg"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.elfUsALL.js"></script><link rel="stylesheet" href="/_astro/acerca-de.DPx7zPgE.css"><style>[data-astro-transition-scope="astro-mlleriz6-1"] { view-transition-name: astro-mlleriz6-1; }@layer astro { ::view-transition-old(astro-mlleriz6-1) { animation: none; opacity: 0; mix-blend-mode: normal; }::view-transition-new(astro-mlleriz6-1) { animation: none; mix-blend-mode: normal; }::view-transition-group(astro-mlleriz6-1) { animation: none } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-mlleriz6-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-mlleriz6-1"] { animation: none; mix-blend-mode: normal; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-mlleriz6-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-mlleriz6-1"] { animation: none; mix-blend-mode: normal; }</style></head> <body> <header class="container mx-auto lg:flex pt-5" data-astro-transition-scope="astro-mlleriz6-1">  <div class="flex w-full justify-between h-16"> <div class="flex items-center"> <a href="/" class="flex items-center space-x-2"> <!-- Icono Open Source --> <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 16 16" class="w-10 h-10 text-slate-300 fill-slate-300 stroke-slate-400 dark:fill-slate-400 dark:stroke-current"> <path stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="m10.69 14.99-1.5-4.79A2.51 2.51 0 0 0 10.5 8a2.5 2.5 0 0 0-5 0c0 .95.53 1.77 1.31 2.2l-1.5 4.79A7.483 7.483 0 0 1 .5 8C.5 3.86 3.86.5 8 .5s7.5 3.36 7.5 7.5c0 3.19-2 5.92-4.81 6.99z"></path> </svg> <!-- Texto del logo --> <div class="flex flex-col"> <span class="text-2xl font-bold text-red-400 h-5.5"> beta </span> <span class="text-md text-slate-400">permanente</span> </div> </a> </div> <div class="flex items-center gap-2"> <button id="theme-toggle" type="button" class="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100 transition-colors p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800" aria-label="Toggle theme"> <span id="theme-toggle-light-icon" class="hidden"> <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path> </svg> </span> <span id="theme-toggle-dark-icon" class="hidden"> <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"> <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path> </svg> </span> </button> <script type="module">const d=()=>{const e=typeof localStorage<"u"&&localStorage.getItem("theme")?localStorage.getItem("theme"):window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";e==="light"?document.documentElement.classList.remove("dark"):document.documentElement.classList.add("dark"),window.localStorage.setItem("theme",e)},s=()=>{const e=document.documentElement.classList.contains("dark"),t=document.getElementById("theme-toggle-light-icon"),n=document.getElementById("theme-toggle-dark-icon");e?(t?.classList.remove("hidden"),n?.classList.add("hidden")):(t?.classList.add("hidden"),n?.classList.remove("hidden"))},o=()=>{const e=document.documentElement;e.classList.toggle("dark");const t=e.classList.contains("dark");localStorage.setItem("theme",t?"dark":"light"),s()},c=()=>{d(),s();const e=document.getElementById("theme-toggle");e&&(e.removeEventListener("click",o),e.addEventListener("click",o))};c();document.addEventListener("astro:page-load",c);</script> <div class="self-center block lg:hidden pt-1"> <button id="astronav-menu" aria-label="Toggle Menu">  <svg fill="currentColor" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="transition-all duration-300 ease-in-out"> <path class="astronav-close-icon astronav-toggle hidden" fill-rule="evenodd" clip-rule="evenodd" d="M18.278 16.864a1 1 0 01-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 01-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 011.414-1.414l4.829 4.828 4.828-4.828a1 1 0 111.414 1.414l-4.828 4.829 4.828 4.828z"></path> <path class="astronav-open-icon astronav-toggle" fill-rule="evenodd" d="M4 5h16a1 1 0 010 2H4a1 1 0 110-2zm0 6h16a1 1 0 010 2H4a1 1 0 010-2zm0 6h16a1 1 0 010 2H4a1 1 0 010-2z"></path> </svg>  </button> </div> </div> </div> <nav class="astronav-items astronav-toggle hidden lg:flex">  <ul class="flex flex-col whitespace-nowrap lg:flex-row lg:gap-4 lg:items-center"> <!-- class="flex flex-col lg:flex-row lg:gap-4 whitespace-nowrap lg:items-center" --> <li> <a href="/blog" class="transition-colors text-red-400 font-semibold transition-colors duration-300"> Blog </a> </li> </ul>  </nav>  <script>(function(){const closeOnClick = false;
+
+["DOMContentLoaded", "astro:after-swap"].forEach((event) => {
+  document.addEventListener(event, addListeners);
+});
+
+// Function to clone and replace elements
+function cloneAndReplace(element) {
+  const clone = element.cloneNode(true);
+  element.parentNode.replaceChild(clone, element);
+}
+
+function addListeners() {
+  // Clean up existing listeners
+  const oldMenuButton = document.getElementById("astronav-menu");
+  if (oldMenuButton) {
+    cloneAndReplace(oldMenuButton);
+  }
+
+  const oldDropdownMenus = document.querySelectorAll(".astronav-dropdown");
+  oldDropdownMenus.forEach((menu) => {
+    cloneAndReplace(menu);
+  });
+
+  // Mobile nav toggle
+  const menuButton = document.getElementById("astronav-menu");
+  menuButton && menuButton.addEventListener("click", toggleMobileNav);
+
+  // Dropdown menus
+  const dropdownMenus = document.querySelectorAll(".astronav-dropdown");
+  dropdownMenus.forEach((menu) => {
+    const button = menu.querySelector("button");
+    button &&
+      button.addEventListener("click", (event) =>
+        toggleDropdownMenu(event, menu, dropdownMenus)
+      );
+
+    // Handle Submenu Dropdowns
+    const dropDownSubmenus = menu.querySelectorAll(
+      ".astronav-dropdown-submenu"
+    );
+
+    dropDownSubmenus.forEach((submenu) => {
+      const submenuButton = submenu.querySelector("button");
+      submenuButton &&
+        submenuButton.addEventListener("click", (event) => {
+          event.stopImmediatePropagation();
+          toggleSubmenuDropdown(event, submenu);
+        });
+    });
+  });
+
+  // Clicking away from dropdown will remove the dropdown class
+  document.addEventListener("click", closeAllDropdowns);
+
+  if (closeOnClick) {
+    handleCloseOnClick();
+  }
+}
+
+function toggleMobileNav() {
+  [...document.querySelectorAll(".astronav-toggle")].forEach((el) => {
+    el.classList.toggle("hidden");
+  });
+}
+
+function toggleDropdownMenu(event, menu, dropdownMenus) {
+  toggleMenu(menu);
+
+  // Close one dropdown when selecting another
+  Array.from(dropdownMenus)
+    .filter((el) => el !== menu && !menu.contains(el))
+    .forEach(closeMenu);
+
+  event.stopPropagation();
+}
+
+function toggleSubmenuDropdown(event, submenu) {
+  event.stopPropagation();
+  toggleMenu(submenu);
+
+  // Close sibling submenus at the same nesting level
+  const siblingSubmenus = submenu
+    .closest(".astronav-dropdown")
+    .querySelectorAll(".astronav-dropdown-submenu");
+  Array.from(siblingSubmenus)
+    .filter((el) => el !== submenu && !submenu.contains(el))
+    .forEach(closeMenu);
+}
+
+function closeAllDropdowns(event) {
+  const dropdownMenus = document.querySelectorAll(".dropdown-toggle");
+  const dropdownParent = document.querySelectorAll(
+    ".astronav-dropdown, .astronav-dropdown-submenu"
+  );
+  const isButtonInsideDropdown = [
+    ...document.querySelectorAll(
+      `.astronav-dropdown button, .astronav-dropdown label, .astronav-dropdown input,
+	  .astronav-dropdown-submenu button, .astronav-dropdown-submenu label, .astronav-dropdown-submenu input,
+	  #astronav-menu`
+    ),
+  ].some((button) => button.contains(event.target));
+  if (!isButtonInsideDropdown) {
+    dropdownMenus.forEach((d) => {
+      // console.log("I ran", d);
+      // if (!d.contains(event.target)) {
+      d.classList.remove("open");
+      d.removeAttribute("open");
+      d.classList.add("hidden");
+      // }
+    });
+    dropdownParent.forEach((d) => {
+      d.classList.remove("open");
+      d.removeAttribute("open");
+      d.setAttribute("aria-expanded", "false");
+    });
+  }
+}
+
+function toggleMenu(menu) {
+  menu.classList.toggle("open");
+  const expanded = menu.getAttribute("aria-expanded") === "true";
+  menu.setAttribute("aria-expanded", expanded ? "false" : "true");
+  menu.hasAttribute("open")
+    ? menu.removeAttribute("open")
+    : menu.setAttribute("open", "");
+
+  const dropdownToggle = menu.querySelector(".dropdown-toggle");
+  const dropdownExpanded = dropdownToggle.getAttribute("aria-expanded");
+  dropdownToggle.classList.toggle("hidden");
+  dropdownToggle.setAttribute(
+    "aria-expanded",
+    dropdownExpanded === "true" ? "false" : "true"
+  );
+}
+
+function closeMenu(menu) {
+  // console.log("closing", menu);
+  menu.classList.remove("open");
+  menu.removeAttribute("open");
+  menu.setAttribute("aria-expanded", "false");
+  const dropdownToggles = menu.querySelectorAll(".dropdown-toggle");
+  dropdownToggles.forEach((toggle) => {
+    toggle.classList.add("hidden");
+    toggle.setAttribute("aria-expanded", "false");
+  });
+}
+
+function handleCloseOnClick() {
+  const navMenuItems = document.querySelector(".astronav-items");
+  const navToggle = document.getElementById("astronav-menu");
+  const navLink = navMenuItems && navMenuItems.querySelectorAll("a");
+
+  const MenuIcons = navToggle.querySelectorAll(".astronav-toggle");
+
+  navLink &&
+    navLink.forEach((item) => {
+      item.addEventListener("click", () => {
+        navMenuItems?.classList.add("hidden");
+        MenuIcons.forEach((el) => {
+          el.classList.toggle("hidden");
+        });
+      });
+    });
+}
+})();</script> </header> <main>  <article class="container mx-auto"> <header class="mb-8"> <h1 class="mb-2">Introducción a Astro</h1> <p class="flex text-slate-500 dark:text-slate-400 text-sm items-center mb-2"> <span class="inline-flex items-center gap-1"> <svg class="h-4 w-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path> </svg> <span class="pt-0.5">15 de octubre de 2025</span> </span> <span class="mx-2">·</span> <span>2 min de lectura</span> </p> <div class="flex flex-wrap gap-2"> <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300"> <svg class="h-3 w-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path> </svg> <span>dev</span> </span><span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300"> <svg class="h-3 w-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path> </svg> <span>astro</span> </span> </div> </header> <div class="prose prose-zinc
+  dark:text-slate-400 dark:prose-invert
+  max-w-none">  <p>Astro es un framework moderno para construir sitios web incríblemente rápidos. Su filosofía principal se resume en <strong>“Menos JavaScript, más velocidad”</strong>, ya que genera HTML estático en el servidor y solo carga el JavaScript que realmente necesita en el navegador.</p>
+<p>A diferencia de otros frameworks SPA, Astro separa el contenido del comportamiento. Puedes usar componentes de <strong>React</strong>, <strong>Vue</strong>, <strong>Svelte</strong>, <strong>Solid</strong> o incluso <strong>Web Components</strong> dentro de un mismo proyecto, sin penalizar el rendimiento. Todo se compila a HTML estático por defecto, pero puedes <strong>hidratar</strong> solo los componentes interactivos cuando sea necesario.</p>
+<p>Además, Astro tiene una integración nativa con <strong>Markdown</strong> y <strong>MDX</strong>, ideal para blogs o documentación técnica. Su sistema de <strong>collections</strong> y <strong>content schemas</strong> facilita la gestión de artículos con tipos seguros en TypeScript.</p>
+<h2 id="ejemplo-básico-de-componente-astro">Ejemplo básico de componente Astro</h2>
+<p>A continuación, un ejemplo sencillo de componente <code>.astro</code> que muestra un saludo dinámico:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="astro"><code><span class="line"><span style="color:#6A737D">---</span></span>
+<span class="line"><span style="color:#6A737D">// src/components/Greeting.astro</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#E1E4E8"> { </span><span style="color:#79B8FF">name</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "Mundo"</span><span style="color:#E1E4E8"> } </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Astro.props;</span></span>
+<span class="line"><span style="color:#6A737D">---</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">h2</span><span style="color:#B392F0"> class</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"text-xl font-semibold"</span><span style="color:#E1E4E8">>¡Hola, {name}! 👋&#x3C;/</span><span style="color:#85E89D">h2</span><span style="color:#E1E4E8">></span></span></code></pre>
+<p>Y podrías usarlo así en una página:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="astro"><code><span class="line"><span style="color:#6A737D">---</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> Greeting </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> "../components/Greeting.astro"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#6A737D">---</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">main</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">  &#x3C;</span><span style="color:#79B8FF">Greeting</span><span style="color:#B392F0"> name</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"Astro Developer"</span><span style="color:#E1E4E8"> /></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">main</span><span style="color:#E1E4E8">></span></span></code></pre>
+<h2 id="ejemplo-de-uso-con-react">Ejemplo de uso con React</h2>
+<p>Astro también permite importar componentes de React directamente:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="astro"><code><span class="line"><span style="color:#6A737D">---</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> Counter </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> "../components/Counter.jsx"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#6A737D">---</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">section</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">  &#x3C;</span><span style="color:#85E89D">h3</span><span style="color:#E1E4E8">>Componente React dentro de Astro&#x3C;/</span><span style="color:#85E89D">h3</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">  &#x3C;</span><span style="color:#79B8FF">Counter</span><span style="color:#B392F0"> client:load</span><span style="color:#E1E4E8"> /></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">section</span><span style="color:#E1E4E8">></span></span></code></pre>
+<p>Con el archivo <code>Counter.jsx</code> así:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="jsx"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { useState } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> "react"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> default</span><span style="color:#F97583"> function</span><span style="color:#B392F0"> Counter</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#E1E4E8"> [</span><span style="color:#79B8FF">count</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">setCount</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#B392F0"> useState</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">  return</span><span style="color:#E1E4E8"> (</span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">button</span></span>
+<span class="line"><span style="color:#B392F0">      className</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"rounded bg-blue-600 px-3 py-1 text-white"</span></span>
+<span class="line"><span style="color:#B392F0">      onClick</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{() </span><span style="color:#F97583">=></span><span style="color:#B392F0"> setCount</span><span style="color:#E1E4E8">(count </span><span style="color:#F97583">+</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">)}</span></span>
+<span class="line"><span style="color:#E1E4E8">    ></span></span>
+<span class="line"><span style="color:#E1E4E8">      Contador: {count}</span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;/</span><span style="color:#85E89D">button</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">  );</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h2 id="conclusión">Conclusión</h2>
+<p>Astro combina la simplicidad del HTML estático con la potencia de los frameworks modernos. Puedes construir sitios rápidos, modulares y fáciles de mantener, con una sintaxis clara y herramientas que se adaptan a tu flujo de trabajo. ✨</p>  </div> <aside class="mt-12 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900"> <div class="flex items-start gap-4">  <img src="/images/avatars/ajmasia.jpg" alt="Antonio Masiá" class="w-16 h-16 rounded-full object-cover flex-shrink-0">  <div class="flex-1"> <h3 class="!mb-1">Antonio Masiá</h3> <p class="text-sm text-slate-600 dark:text-slate-400 mb-2"> Full Stack Web Developer &amp; Generative AI Enthusiast </p>  <div class="flex gap-3 items-center"> <a href="https://linkedin.com/in/ajmasia" target="_blank" rel="noopener noreferrer" class="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100 transition-colors" aria-label="LinkedIn"> <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"> <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path> </svg> </a> <a href="https://github.com/ajmasia" target="_blank" rel="noopener noreferrer" class="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100 transition-colors" aria-label="GitHub"> <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"> <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"></path> </svg> </a> <a href="https://twitter.com/ajmasia" target="_blank" rel="noopener noreferrer" class="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100 transition-colors" aria-label="Twitter"> <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"> <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"></path> </svg> </a> </div> </div> </div> </aside> </article>  </main> <footer class="mt-auto py-10 bg-slate-100 dark:bg-gray-800 dark:text-slate-400"> <div class="container mx-auto flex flex-col gap-2">  <div class="flex flex-wrap justify-center break-words text-center text-sm"> <span class="px-1">Contenido publicado bajo licencia</span> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" class="link px-1">
+Creative Commons BY-NC-SA 4.0
+</a> </div>  <div class="flex flex-wrap justify-center items-center gap-2 text-xs"> <a href="/aviso-legal" class="link">Aviso Legal</a> <span>·</span> <a href="/privacidad" class="link">Privacidad</a> <span>·</span> <a href="/cookies" class="link">Cookies</a> </div>  <div class="flex flex-wrap justify-center items-center gap-1 text-xs text-slate-500 dark:text-slate-500"> <span>Beta Permanente v1.0.0</span> <span>·</span> <span>Desarrollado con Astro</span> <span>·</span> <span> <a href="https://github.com/ajmasia/permanentbeta.dev" target="_blank" rel="noopener noreferrer" class="link">Código</a>
+bajo Licencia <a href="https://github.com/ajmasia/permanentbeta.dev/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="link">GNU General Public License v3.0</a> </span> </div> </div> </footer> <button id="back-to-top" aria-label="Volver arriba" class="fixed bottom-8 right-8 z-50 h-12 w-12 rounded-full bg-red-400 text-white shadow-lg transition-all duration-300 hover:bg-red-500 opacity-0 pointer-events-none"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-6 w-6 mx-auto"> <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5"></path> </svg> </button> <script type="module">const o=()=>{const t=document.getElementById("back-to-top");if(!t)return;const e=()=>{window.scrollY>300?(t.classList.remove("opacity-0","pointer-events-none"),t.classList.add("opacity-100")):(t.classList.remove("opacity-100"),t.classList.add("opacity-0","pointer-events-none"))},n=()=>{window.scrollTo({top:0,behavior:"smooth"})};window.removeEventListener("scroll",e),t.removeEventListener("click",n),window.addEventListener("scroll",e),t.addEventListener("click",n),e()};o();document.addEventListener("astro:after-swap",o);document.addEventListener("astro:page-load",o);</script> </body></html>
