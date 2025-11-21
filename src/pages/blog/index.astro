@@ -13,6 +13,9 @@ const posts: BlogPost[] = await getCollection(
   "blog",
   ({ data }: BlogPost) => data.draft !== true && data.lang == "es",
 );
+
+// Sort posts by date (most recent first)
+posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
 <MainLayout title={getPageTitle(Astro.url.pathname)}>
