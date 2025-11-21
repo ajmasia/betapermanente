@@ -6,6 +6,7 @@ import type { CollectionEntry } from "astro:content";
 
 import MainLayout from "../../layouts/MainLayout/MainLayout.astro";
 import CalendarIcon from "../../components/icons/CalendarIcon.astro";
+import Tag from "../../components/Tag.astro";
 import {
   calculateReadingTime,
   formatReadingTime,
@@ -34,6 +35,13 @@ posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
             </a>
           </h2>
           {post.data.description && <p class="mb-2">{post.data.description}</p>}
+          {post.data.tags && post.data.tags.length > 0 && (
+            <div class="flex flex-wrap gap-2 mb-2">
+              {post.data.tags.map((tag: string) => (
+                <Tag tag={tag} />
+              ))}
+            </div>
+          )}
           <p class="flex text-slate-500 dark:text-slate-400 text-sm items-center">
             <span class="inline-flex items-center gap-1">
               <CalendarIcon class="h-4 w-4 flex-shrink-0" />

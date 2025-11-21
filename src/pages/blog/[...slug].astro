@@ -6,6 +6,7 @@ import type { GetStaticPaths } from "astro";
 import MainLayout from "../../layouts/MainLayout/MainLayout.astro";
 import { SITE } from "../../config.ts";
 import CalendarIcon from "../../components/icons/CalendarIcon.astro";
+import Tag from "../../components/Tag.astro";
 import {
   calculateReadingTime,
   formatReadingTime,
@@ -51,6 +52,13 @@ const pageTitle = `${SITE.title}: ${post.data.title}`;
         <span class="mx-2">·</span>
         <span>{formatReadingTime(calculateReadingTime(post.body))}</span>
       </p>
+      {post.data.tags && post.data.tags.length > 0 && (
+        <div class="flex flex-wrap gap-2 mt-4">
+          {post.data.tags.map((tag: string) => (
+            <Tag tag={tag} />
+          ))}
+        </div>
+      )}
     </header>
     <Prose>
       <Content />
