@@ -1,7 +1,7 @@
 ---
 import { ClientRouter } from "astro:transitions";
 
-import { NAVIGATION, type NavItem } from "../../config.ts";
+import { NAVIGATION, SITE, type NavItem } from "../../config.ts";
 
 import "../../styles/global.css";
 import Header from "./components/Header/Header.astro";
@@ -9,10 +9,21 @@ import Footer from "./components/Footer/Footer.astro";
 
 interface Props {
   title: string;
+  description?: string;
+  image?: string;
+  type?: "website" | "article";
 }
 
-const { title } = Astro.props;
+const {
+  title,
+  description = SITE.description,
+  image = SITE.image,
+  type = "website",
+} = Astro.props;
+
 const navigation: readonly NavItem[] = NAVIGATION;
+const canonicalURL = new URL(Astro.url.pathname, SITE.url);
+const imageURL = new URL(image, SITE.url);
 ---
 
 <!doctype html>
@@ -21,6 +32,24 @@ const navigation: readonly NavItem[] = NAVIGATION;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={imageURL} />
+    <meta property="og:site_name" content={SITE.title} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={imageURL} />
+
     <ClientRouter />
   </head>
   <body>
