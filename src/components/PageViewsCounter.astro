@@ -31,8 +31,11 @@ const GOATCOUNTER_SITE = "betapermanente";
       if (!path || !site || !counterWrapper) continue;
 
       try {
-        const url = `https://${site}.goatcounter.com/counter/${encodeURIComponent(path)}.json`;
-        const response = await fetch(url);
+        // Add timestamp to prevent browser caching
+        const url = `https://${site}.goatcounter.com/counter/${encodeURIComponent(path)}.json?t=${Date.now()}`;
+        const response = await fetch(url, {
+          cache: 'no-store'
+        });
 
         if (!response.ok) {
           counterWrapper.style.display = "none";
