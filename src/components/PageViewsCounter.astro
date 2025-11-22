@@ -1,0 +1,60 @@
+---
+import EyeIcon from "./icons/EyeIcon.astro";
+
+interface Props {
+  path: string;
+}
+
+const { path } = Astro.props;
+---
+
+<span id="page-views-counter" class="inline-flex items-center gap-1" data-path={path}>
+  <EyeIcon class="h-4 w-4 flex-shrink-0" />
+  <span id="views-count">...</span>
+</span>
+
+<script>
+  const GOATCOUNTER_SITE = "betapermanente";
+
+  async function loadPageViews() {
+    const counter = document.getElementById("page-views-counter");
+    const viewsElement = document.getElementById("views-count");
+
+    if (!counter || !viewsElement) return;
+
+    const path = counter.getAttribute("data-path");
+    if (!path) return;
+
+    try {
+      const url = `https://${GOATCOUNTER_SITE}.goatcounter.com/counter/${encodeURIComponent(path)}.json`;
+      const response = await fetch(url);
+
+      if (!response.ok) {
+        // Hide counter if no data
+        counter.style.display = "none";
+        return;
+      }
+
+      const data = await response.json();
+      const views = data.count || 0;
+
+      if (views === 0) {
+        // Hide counter if zero views
+        counter.style.display = "none";
+      } else {
+        const formatted = views === 1 ? "1 visita" : `${views.toLocaleString("es-ES")} visitas`;
+        viewsElement.textContent = formatted;
+      }
+    } catch (error) {
+      console.error("Error loading page views:", error);
+      // Hide counter on error
+      counter.style.display = "none";
+    }
+  }
+
+  // Load views when page loads
+  loadPageViews();
+
+  // Reload views after Astro View Transitions
+  document.addEventListener("astro:page-load", loadPageViews);
+</script>
