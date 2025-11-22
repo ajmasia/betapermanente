@@ -6,6 +6,7 @@ import type { CollectionEntry } from "astro:content";
 
 import MainLayout from "../../layouts/MainLayout/MainLayout.astro";
 import CalendarIcon from "../../components/icons/CalendarIcon.astro";
+import ClockIcon from "../../components/icons/ClockIcon.astro";
 import Tag from "../../components/Tag.astro";
 import {
   calculateReadingTime,
@@ -50,7 +51,10 @@ posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
               </span>
             </span>
             <span class="mx-2">·</span>
-            <span>{formatReadingTime(calculateReadingTime(post.body))}</span>
+            <span class="inline-flex items-center gap-1">
+              <ClockIcon class="h-4 w-4 flex-shrink-0" />
+              <span>{formatReadingTime(calculateReadingTime(post.body))}</span>
+            </span>
           </p>
           {post.data.tags && post.data.tags.length > 0 && (
             <div class="flex flex-wrap gap-2">

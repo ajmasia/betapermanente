@@ -6,6 +6,7 @@ import type { GetStaticPaths } from "astro";
 import MainLayout from "../../layouts/MainLayout/MainLayout.astro";
 import { SITE } from "../../config.ts";
 import CalendarIcon from "../../components/icons/CalendarIcon.astro";
+import ClockIcon from "../../components/icons/ClockIcon.astro";
 import Tag from "../../components/Tag.astro";
 import Author from "../../components/Author.astro";
 import {
@@ -58,7 +59,10 @@ const pageTitle = `${SITE.title}: ${post.data.title}`;
           >
         </span>
         <span class="mx-2">·</span>
-        <span>{formatReadingTime(calculateReadingTime(post.body))}</span>
+        <span class="inline-flex items-center gap-1">
+          <ClockIcon class="h-4 w-4 flex-shrink-0" />
+          <span>{formatReadingTime(calculateReadingTime(post.body))}</span>
+        </span>
       </p>
       {
         post.data.tags && post.data.tags.length > 0 && (
