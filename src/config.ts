@@ -13,6 +13,7 @@ export const NAVIGATION = [
   { name: "Proyectos", href: "/proyectos", enabled: false },
   { name: "Archivo", href: "/archivo", enabled: false },
   { name: "Acerca de", href: "/acerca-de", enabled: false },
+  { name: "Stats", href: "https://betapermanente.goatcounter.com", enabled: true, external: true },
 ] as const;
 
 export const SOCIAL = {
@@ -36,7 +37,7 @@ export const AUTHORS = {
 } as const;
 
 export type SiteConfig = typeof SITE;
-export type NavItem = (typeof NAVIGATION)[number];
+export type NavItem = (typeof NAVIGATION)[number] & { external?: boolean };
 export type SocialLinks = typeof SOCIAL;
 export type AuthorId = keyof typeof AUTHORS;
 export type Author = (typeof AUTHORS)[AuthorId];

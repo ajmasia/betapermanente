@@ -80,11 +80,14 @@ const isActiveHref = (current: string, href: string) =>
         {
           navigation.map((item) => {
             const isActive = isActiveHref(Astro.url.pathname, item.href);
+            const isExternal = item.external || item.href.startsWith('http');
 
             return (
               <li>
                 <a
                   href={item.href}
+                  target={isExternal ? "_blank" : undefined}
+                  rel={isExternal ? "noopener noreferrer" : undefined}
                   class={`transition-colors ${
                     isActive
                       ? "text-red-400 font-semibold transition-colors duration-300"
