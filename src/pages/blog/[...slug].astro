@@ -32,11 +32,13 @@ const post = await getEntry("blog", slug);
 if (!post) throw new Error(`No existe el post: ${slug}`);
 
 const { Content } = await post.render();
-const pageTitle = `${SITE.title}: ${post.data.title}`;
+const browserTitle = `${SITE.title}: ${post.data.title}`;
+const socialTitle = post.data.title;
 ---
 
 <MainLayout
-  title={pageTitle}
+  title={browserTitle}
+  socialTitle={socialTitle}
   description={post.data.description}
   image={post.data.heroImage}
   type="article"
