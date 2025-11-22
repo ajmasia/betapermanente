@@ -3,7 +3,8 @@ title: "Juegos de Guerra: Donde todo empezó"
 description: "Sobre cómo la película Juegos de Guerra despertó la curiosidad por la tecnología, el viaje de un niño curioso, su primera computadora y cómo acabó convirtiendo aquella chispa en su forma de vida."
 date: "Nov 21 2025"
 author: "ajmasia"
-heroImage: "/images/blog/juegos-de-guerra-donde-todo-empezo.svg"
+heroImage: "/images/blog/juegos-de-guerra-donde-todo-empezo.jpg"
+showHeroImage: true
 tags: ["offtopic", "reflexión"]
 lang: es
 draft: false

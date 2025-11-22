@@ -12,6 +12,7 @@ const blog = defineCollection({
     author: z.enum(authorIds).default("ajmasia"),
     date: z.coerce.date(),
     heroImage: z.string().optional(),
+    showHeroImage: z.boolean().default(true),
     tags: z.array(z.string()).optional(),
     lang: z.enum(["en", "es"]).default("es"),
     draft: z.boolean().default(true),

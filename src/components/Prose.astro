@@ -1,5 +1,11 @@
 ---
+interface Props {
+  heroImage?: string;
+  title?: string;
+  showHeroImage?: boolean;
+}
 
+const { heroImage, title, showHeroImage = true } = Astro.props;
 ---
 
 <div
@@ -7,5 +13,12 @@
   dark:text-slate-400 dark:prose-invert
   max-w-none"
 >
+  {heroImage && showHeroImage && (
+    <img
+      src={heroImage}
+      alt={title || ''}
+      class="w-full h-auto rounded-2xl mb-8"
+    />
+  )}
   <slot />
 </div>

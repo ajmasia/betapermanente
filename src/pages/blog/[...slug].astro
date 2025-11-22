@@ -70,7 +70,11 @@ const pageTitle = `${SITE.title}: ${post.data.title}`;
         )
       }
     </header>
-    <Prose>
+    <Prose
+      heroImage={post.data.heroImage}
+      title={post.data.title}
+      showHeroImage={post.data.showHeroImage}
+    >
       <Content />
     </Prose>
     {post.data.author && <Author authorId={post.data.author} />}
