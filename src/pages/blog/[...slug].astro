@@ -7,12 +7,14 @@ import MainLayout from "../../layouts/MainLayout/MainLayout.astro";
 import { SITE } from "../../config.ts";
 import CalendarIcon from "../../components/icons/CalendarIcon.astro";
 import ClockIcon from "../../components/icons/ClockIcon.astro";
+import EyeIcon from "../../components/icons/EyeIcon.astro";
 import Tag from "../../components/Tag.astro";
 import Author from "../../components/Author.astro";
 import {
   calculateReadingTime,
   formatReadingTime,
 } from "../../lib/readingTime.ts";
+import { getPageViews, formatPageViews } from "../../lib/goatcounter.ts";
 
 type BlogPost = CollectionEntry<"blog">;
 
@@ -32,6 +34,7 @@ if (!post) throw new Error(`No existe el post: ${slug}`);
 
 const { Content } = await post.render();
 const pageTitle = `${SITE.title}: ${post.data.title}`;
+const views = await getPageViews(`/blog/${slug}`);
 ---
 
 <MainLayout
@@ -63,6 +66,17 @@ const pageTitle = `${SITE.title}: ${post.data.title}`;
           <ClockIcon class="h-4 w-4 flex-shrink-0" />
           <span>{formatReadingTime(calculateReadingTime(post.body))}</span>
         </span>
+        {
+          views > 0 && (
+            <>
+              <span class="mx-2">·</span>
+              <span class="inline-flex items-center gap-1">
+                <EyeIcon class="h-4 w-4 flex-shrink-0" />
+                <span>{formatPageViews(views)}</span>
+              </span>
+            </>
+          )
+        }
       </p>
       {
         post.data.tags && post.data.tags.length > 0 && (
