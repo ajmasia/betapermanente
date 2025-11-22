@@ -58,6 +58,10 @@ const imageURL = new URL(image, SITE.url);
     <meta property="twitter:image" content={imageURL} />
 
     <ClientRouter />
+
+    <!-- Cloudflare Web Analytics -->
+    <script is:inline defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "57a84a7b988e43f6acaf5cde99f32974"}'></script>
+    <!-- End Cloudflare Web Analytics -->
   </head>
   <body>
     <Header navigation={navigation} />
