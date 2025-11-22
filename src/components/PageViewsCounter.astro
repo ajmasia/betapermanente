@@ -25,7 +25,9 @@ const GOATCOUNTER_SITE = "betapermanente";
 
     for (const viewsElement of counters) {
       const path = viewsElement.getAttribute("data-path");
-      const counterWrapper = viewsElement.closest("#page-views-counter") as HTMLElement | null;
+      const counterWrapper = viewsElement.closest(
+        "#page-views-counter",
+      ) as HTMLElement | null;
       const site = counterWrapper?.getAttribute("data-goatcounter-site");
 
       if (!path || !site || !counterWrapper) continue;
@@ -34,7 +36,7 @@ const GOATCOUNTER_SITE = "betapermanente";
         // Add timestamp to prevent browser caching
         const url = `https://${site}.goatcounter.com/counter/${encodeURIComponent(path)}.json?t=${Date.now()}`;
         const response = await fetch(url, {
-          cache: 'no-store'
+          cache: "no-store",
         });
 
         if (!response.ok) {
@@ -49,7 +51,7 @@ const GOATCOUNTER_SITE = "betapermanente";
           counterWrapper.style.display = "none";
         } else {
           const formatted =
-            views === 1 ? "1 visita" : `${views.toLocaleString("es-ES")} visitas`;
+            views === 1 ? "1 visita" : `${views.toLocaleString("es-ES")}`;
           viewsElement.textContent = formatted;
         }
       } catch (error) {

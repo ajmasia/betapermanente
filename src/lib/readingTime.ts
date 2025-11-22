@@ -21,7 +21,7 @@ export function calculateReadingTime(
  */
 export function formatReadingTime(minutes: number, lang: string = "es"): string {
   if (lang === "es") {
-    return `${minutes} min`;
+    return `${minutes}'`;
   }
   return `${minutes} min read`;
 }
