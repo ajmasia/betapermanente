@@ -33,13 +33,14 @@ const { path } = Astro.props;
     const callbackName = `goatcounter_${Math.random().toString(36).substring(7)}`;
 
     // @ts-ignore
-    window[callbackName] = function(data: { count: number }) {
-      const views = data.count || 0;
+    window[callbackName] = function(data: any) {
+      // GoatCounter returns count as string, so parse it
+      const views = parseInt(data.count || data.count_unique || "0", 10);
 
-      console.log(`Page views for ${path}: ${views}`);
+      console.log(`Page views for ${path}: ${views}`, data);
 
-      if (views === 0) {
-        // Hide counter if zero views
+      if (views === 0 || isNaN(views)) {
+        // Hide counter if zero views or invalid data
         counter.style.display = "none";
       } else {
         const formatted =
@@ -50,8 +51,8 @@ const { path } = Astro.props;
       // Cleanup
       // @ts-ignore
       delete window[callbackName];
-      const script = document.querySelector(`script[src*="${callbackName}"]`);
-      if (script) script.remove();
+      const scriptEl = document.querySelector(`script[src*="${callbackName}"]`);
+      if (scriptEl) scriptEl.remove();
     };
 
     // Create script tag for JSONP
