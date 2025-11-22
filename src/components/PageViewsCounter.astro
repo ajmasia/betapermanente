@@ -56,9 +56,17 @@ const { path } = Astro.props;
 
     // Create script tag for JSONP
     const script = document.createElement("script");
-    script.src = `https://${GOATCOUNTER_SITE}.goatcounter.com/counter/${encodeURIComponent(path)}.json?callback=${callbackName}`;
+    const url = `https://${GOATCOUNTER_SITE}.goatcounter.com/counter/${encodeURIComponent(path)}.json?callback=${callbackName}`;
+    script.src = url;
+
+    console.log(`Attempting to load views from: ${url}`);
+
     script.onerror = function() {
-      console.error("Error loading page views");
+      console.error(`Error loading page views from: ${url}`);
+      console.error("Possible causes:");
+      console.error("1. Public statistics not enabled in GoatCounter settings");
+      console.error("2. No data available yet for this path");
+      console.error("3. GoatCounter site code incorrect");
       counter.style.display = "none";
       // @ts-ignore
       delete window[callbackName];
