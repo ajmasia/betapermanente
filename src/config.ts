@@ -2,7 +2,7 @@ export const SITE = {
   title: "Beta Permanente",
   description: "Blog personal sobre desarrollo de software, tecnología y aprendizaje continuo",
   author: "Antonio Masiá",
-  url: "https://betapermanente.dev",
+  url: "https://betapermanente.link",
   lang: "es",
   image: "/images/og/og-default.svg",
 } as const;

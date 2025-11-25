@@ -44,7 +44,7 @@ Quizás en el actual contexto geopolítico, estaría bien revisar ciertos princi
 
 ¿Volvería a verla hoy? Sin duda, de hecho suelo hacerlo de vez en cuando. Y aunque ya no me sorprende su parte técnica, cosa que es normal porque han pasado más de 40 años, me emociona el espíritu que transmite. La sensación de estar ante algo nuevo, desconocido, que podía cambiarlo todo. Hoy la veo con otros ojos, claro, pero ese niño de 12 años que salió del cine con la cabeza a mil por hora... sigue aquí, con ganas de seguir aprendiendo.
 
-[Beta Permanente](https://betapermanente.dev) es un espacio que surge desde la intención de aprender, compartir y reflexionar. Un rincón donde la tecnología se cruza con la curiosidad, y donde [Juegos de Guerra](https://www.imdb.com/es-es/title/tt0086567/) —_esa película que marcó a tantos, entre ellos a mí_— sirve como homenaje y punto de partida. En este sentido, compartiré contigo aprendizajes, curiosidades, dudas y reflexiones sobre el mundo tech actual y su impacto en lo humano. Ojalá disfrutes leyéndolo tanto como yo al escribirlo.
+[Beta Permanente](https://betapermanente.link) es un espacio que surge desde la intención de aprender, compartir y reflexionar. Un rincón donde la tecnología se cruza con la curiosidad, y donde [Juegos de Guerra](https://www.imdb.com/es-es/title/tt0086567/) —_esa película que marcó a tantos, entre ellos a mí_— sirve como homenaje y punto de partida. En este sentido, compartiré contigo aprendizajes, curiosidades, dudas y reflexiones sobre el mundo tech actual y su impacto en lo humano. Ojalá disfrutes leyéndolo tanto como yo al escribirlo.
 
 > Un juego muy extraño. La única forma de ganar es no jugar. ¿Qué tal una partida de ajedrez?
 > Joshua (WOPR)

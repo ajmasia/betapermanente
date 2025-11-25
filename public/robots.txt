@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /
-Sitemap: https://betapermanente.dev/sitemap-index.xml
+Sitemap: https://betapermanente.link/sitemap-index.xml
 
 User-agent: GPTBot
 Disallow: /

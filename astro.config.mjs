@@ -8,7 +8,7 @@ import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://betapermanente.dev',
+  site: 'https://betapermanente.link',
   integrations: [sitemap()],
 
   vite: {

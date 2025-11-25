@@ -5,9 +5,9 @@
 [![Built with Astro](https://astro.badg.es/v2/built-with-astro/tiny.svg)](https://astro.build)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-**Live Site:** [betapermanente.dev](https://betapermanente.dev)
+**Live Site:** [betapermanente.link](https://betapermanente.link)
 
-A Spanish-first personal blog focused on software development, technology, and continuous learning. Built with modern web technologies and best practices.
+A Spanish-first personal blog focused on software.linkelopment, technology, and continuous learning. Built with modern web technologies and best practices.
 
 ---
 
@@ -60,17 +60,20 @@ A Spanish-first personal blog focused on software development, technology, and c
 ## 🛠️ Tech Stack
 
 ### Core
+
 - **[Astro 5.15.1](https://astro.build)** - Static Site Generator
 - **[TypeScript](https://www.typescriptlang.org/)** - Type safety (strict mode)
 - **[Tailwind CSS v4](https://tailwindcss.com/)** - Utility-first CSS framework
 
 ### Integrations & Plugins
+
 - **[@astrojs/rss](https://docs.astro.build/en/guides/rss/)** - RSS feed generation
 - **[@astrojs/sitemap](https://docs.astro.build/en/guides/integrations-guide/sitemap/)** - Sitemap generation
 - **[@tailwindcss/typography](https://tailwindcss.com/docs/typography-plugin)** - Beautiful typographic defaults
 - **[astro-navbar](https://www.npmjs.com/package/astro-navbar)** - Responsive navigation component
 
-### Development Tools
+### .linkelopment Tools
+
 - **[ESLint](https://eslint.org/)** - Code linting with Astro plugin
 - **[Prettier](https://prettier.io/)** - Code formatting
 - **[Husky](https://typicode.github.io/husky/)** - Git hooks
@@ -93,20 +96,20 @@ A Spanish-first personal blog focused on software development, technology, and c
 
 ```bash
 # Clone the repository
-git clone https://github.com/ajmasia/permanentbeta.dev.git
+git clone https://github.com/ajmasia/permanentbeta.link.git
 
 # Navigate to the project directory
-cd permanentbeta.dev
+cd permanentbeta.link
 
 # Install dependencies
 npm install
 ```
 
-### Development
+### .linkelopment
 
 ```bash
-# Start development server (http://localhost:4321)
-npm run dev
+# Start.linkelopment server (http://localhost:4321)
+npm run.link
 
 # Build for production
 npm run build
@@ -124,7 +127,7 @@ npm run astro -- --help
 ## 📂 Project Structure
 
 ```text
-permanentbeta.dev/
+permanentbeta.link/
 ├── public/               # Static assets
 │   ├── favicon.svg       # Site favicon
 │   ├── images/           # Images (avatars, blog, OG)
@@ -163,7 +166,7 @@ permanentbeta.dev/
 │   └── content.config.ts # Content Collections schema
 ├── .husky/               # Git hooks
 ├── CLAUDE.md             # AI assistant instructions
-├── notes.md              # Development notes
+├── notes.md              #.linkelopment notes
 ├── package.json
 └── tsconfig.json
 ```
@@ -181,15 +184,15 @@ export const SITE = {
   title: "Beta Permanente",
   description: "Blog personal sobre desarrollo de software...",
   author: "Antonio Masiá",
-  url: "https://betapermanente.dev",
+  url: "https://betapermanente.link",
   lang: "es",
   image: "/images/og/og-default.svg",
-}
+};
 
 export const NAVIGATION = [
   { name: "Blog", href: "/blog", enabled: true },
   // Add more navigation items...
-]
+];
 ```
 
 ### Content Collections Schema
@@ -208,7 +211,7 @@ const blog = defineCollection({
     draft: z.boolean().default(true),
     heroImage: z.string().optional(),
   }),
-})
+});
 ```
 
 ### Tailwind CSS v4
@@ -216,13 +219,13 @@ const blog = defineCollection({
 Tailwind is configured via Vite plugin in `astro.config.mjs`:
 
 ```javascript
-import tailwindcss from '@tailwindcss/vite'
+import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   vite: {
-    plugins: [tailwindcss()]
-  }
-})
+    plugins: [tailwindcss()],
+  },
+});
 ```
 
 Theme configuration in `src/styles/global.css` using `@theme` directive.
@@ -241,7 +244,7 @@ title: "My Awesome Post"
 description: "A brief description of the post"
 author: "ajmasia"
 date: 2025-11-21
-tags: ["astro", "webdev"]
+tags: ["astro", "we.link"]
 lang: "es"
 draft: false
 heroImage: "/images/blog/my-post.jpg"
@@ -263,7 +266,7 @@ Your content here...
 
 ## 🔀 Git Workflow
 
-This project uses a **simplified GitHub Flow** optimized for solo development and frequent content publishing.
+This project uses a **simplified GitHub Flow** optimized for solo.linkelopment and frequent content publishing.
 
 ### Branching Strategy
 
@@ -275,6 +278,7 @@ hotfix/[issue]    → Urgent production fixes (temporary)
 ```
 
 **Key principles:**
+
 - `main` is the **only permanent branch**
 - All work merges directly to `main`
 - Tags mark releases on `main`
@@ -332,7 +336,7 @@ git tag v1.0.2 -m "content: Kubernetes deep dive"
 git push origin --tags
 ```
 
-#### **Developing a New Feature**
+#### \*.linkeloping a New Feature\*\*
 
 For new functionality (search, lazy loading, etc.):
 
@@ -341,7 +345,7 @@ For new functionality (search, lazy loading, etc.):
 git checkout main
 git checkout -b feature/lazy-loading
 
-# 2. Develop the feature
+# 2..linkelop the feature
 git commit -m "feat: add lazy loading to images"
 git commit -m "feat: optimize image loading performance"
 
@@ -389,19 +393,20 @@ git branch -d hotfix/fix-rss-encoding
 
 Uses [Conventional Commits](https://www.conventionalcommits.org/) enforced by Commitlint:
 
-| Type | Description | Version Impact |
-|------|-------------|----------------|
-| `feat:` | New feature | MINOR (v1.X.0) |
-| `fix:` | Bug fix | PATCH (v1.0.X) |
-| `content:` | Blog post | PATCH (v1.0.X) |
-| `docs:` | Documentation only | - |
-| `style:` | Code formatting | - |
-| `refactor:` | Code restructuring | - |
-| `perf:` | Performance improvement | MINOR/PATCH |
-| `test:` | Add/update tests | - |
-| `chore:` | Maintenance tasks | - |
+| Type        | Description             | Version Impact |
+| ----------- | ----------------------- | -------------- |
+| `feat:`     | New feature             | MINOR (v1.X.0) |
+| `fix:`      | Bug fix                 | PATCH (v1.0.X) |
+| `content:`  | Blog post               | PATCH (v1.0.X) |
+| `docs:`     | Documentation only      | -              |
+| `style:`    | Code formatting         | -              |
+| `refactor:` | Code restructuring      | -              |
+| `perf:`     | Performance improvement | MINOR/PATCH    |
+| `test:`     | Add/update tests        | -              |
+| `chore:`    | Maintenance tasks       | -              |
 
 **Examples:**
+
 ```bash
 git commit -m "feat: add full-text search"
 git commit -m "fix: correct blog post sorting"
@@ -411,6 +416,7 @@ git commit -m "chore: update dependencies"
 ```
 
 **Commit message format:**
+
 ```
 <type>: <subject>
 
@@ -447,6 +453,7 @@ v1.2.3
 #### **PATCH (v1.0.X)** - Increment third number
 
 **When to use:**
+
 - ✅ Publishing a new blog post
 - ✅ Fixing bugs
 - ✅ Correcting typos
@@ -454,6 +461,7 @@ v1.2.3
 - ✅ Dependency updates (no breaking changes)
 
 **Examples:**
+
 ```bash
 v1.0.0 → v1.0.1  # New post: "Docker Basics"
 v1.0.1 → v1.0.2  # Fix: RSS feed encoding
@@ -462,6 +470,7 @@ v1.0.3 → v1.0.4  # Fix: Typo in post slug
 ```
 
 **Commands:**
+
 ```bash
 git tag v1.0.1 -m "content: Docker basics post"
 git push origin --tags
@@ -472,12 +481,14 @@ git push origin --tags
 #### **MINOR (v1.X.0)** - Increment second number, reset PATCH
 
 **When to use:**
+
 - ✅ New feature implementation
 - ✅ New site section
 - ✅ Significant UX improvements
 - ✅ New integrations (search, comments, etc.)
 
 **Examples:**
+
 ```bash
 v1.0.4 → v1.1.0  # Feature: Lazy loading images
 v1.1.0 → v1.2.0  # Feature: Full-text search
@@ -486,6 +497,7 @@ v1.3.0 → v1.4.0  # Feature: Newsletter signup
 ```
 
 **Commands:**
+
 ```bash
 git tag v1.1.0 -m "feat: lazy loading images"
 git push origin --tags
@@ -496,12 +508,14 @@ git push origin --tags
 #### **MAJOR (vX.0.0)** - Increment first number, reset all
 
 **When to use:**
+
 - ✅ Complete site redesign
 - ✅ Framework migration (e.g., Astro → Next.js)
 - ✅ Breaking URL structure changes
 - ✅ Major rebranding
 
 **Examples:**
+
 ```bash
 v1.4.0 → v2.0.0  # Complete site redesign
 v2.0.0 → v3.0.0  # Migration to different framework
@@ -509,6 +523,7 @@ v3.0.0 → v4.0.0  # Major rebranding/domain change
 ```
 
 **Commands:**
+
 ```bash
 git tag v2.0.0 -m "feat: complete site redesign"
 git push origin --tags
@@ -521,6 +536,7 @@ git push origin --tags
 #### **Scenario 1: Multiple posts in one week**
 
 **Option A - Tag each post** (recommended for active blogs):
+
 ```bash
 # Monday
 git commit -m "content: add Docker basics"
@@ -536,6 +552,7 @@ git tag v1.0.3 && git push origin main --tags
 ```
 
 **Option B - Batch tag at week end**:
+
 ```bash
 # Mon, Wed, Fri - just commit and push
 git commit -m "content: add [post]" && git push
@@ -547,10 +564,10 @@ git push origin --tags
 
 ---
 
-#### **Scenario 2: Feature development + posts in parallel**
+#### **Scenario 2: Feature.linkelopment + posts in parallel**
 
 ```bash
-# Week 1-2: Develop feature in branch
+# Week 1-2:.linkelop feature in branch
 git checkout -b feature/search
 git commit -m "feat: implement search"
 # DON'T MERGE YET
@@ -588,12 +605,12 @@ git push origin main --tags
 
 ### Quick Reference Table
 
-| Change Type | Version Change | Command |
-|-------------|----------------|---------|
+| Change Type   | Version Change  | Command          |
+| ------------- | --------------- | ---------------- |
 | New blog post | v1.0.0 → v1.0.1 | `git tag v1.0.1` |
-| Bug fix | v1.0.1 → v1.0.2 | `git tag v1.0.2` |
-| New feature | v1.0.2 → v1.1.0 | `git tag v1.1.0` |
-| Another post | v1.1.0 → v1.1.1 | `git tag v1.1.1` |
+| Bug fix       | v1.0.1 → v1.0.2 | `git tag v1.0.2` |
+| New feature   | v1.0.2 → v1.1.0 | `git tag v1.1.0` |
+| Another post  | v1.1.0 → v1.1.1 | `git tag v1.1.1` |
 | Site redesign | v1.5.0 → v2.0.0 | `git tag v2.0.0` |
 
 ---
@@ -619,7 +636,7 @@ This project is configured for **automatic deployment on Vercel** using the offi
 The project uses `@astrojs/vercel` adapter configured in `astro.config.mjs`:
 
 ```javascript
-import vercel from '@astrojs/vercel';
+import vercel from "@astrojs/vercel";
 
 export default defineConfig({
   adapter: vercel(),
@@ -630,6 +647,7 @@ export default defineConfig({
 #### **Automatic Deployment Workflow**
 
 1. **Push to `main` branch**:
+
    ```bash
    git push origin main
    ```
@@ -639,7 +657,7 @@ export default defineConfig({
    - Builds the project (`npm run build`)
    - Deploys to production
 
-3. **Live in seconds** - Your changes are deployed automatically to `betapermanente.dev`
+3. **Live in seconds** - Your changes are deployed automatically to `betapermanente.link`
 
 #### **Setup (One-Time)**
 
@@ -653,8 +671,9 @@ If deploying to Vercel for the first time:
    - Node Version: `24.x`
 
 3. **Environment Variables** (if needed):
+
    ```
-   SITE_URL=https://betapermanente.dev
+   SITE_URL=https://betapermanente.link
    ```
 
 4. **Connect Git repository** - Vercel will deploy automatically on every push to `main`
@@ -662,6 +681,7 @@ If deploying to Vercel for the first time:
 #### **Preview Deployments**
 
 Vercel automatically creates preview deployments for:
+
 - Pull requests (each PR gets a unique URL)
 - Feature branches (optional, can be configured)
 
@@ -690,6 +710,7 @@ Output is generated in `.vercel/output/` directory (handled by adapter).
 While optimized for Vercel, the project can be deployed to other platforms:
 
 #### **Netlify**
+
 ```bash
 # Install Netlify adapter
 npm install @astrojs/netlify
@@ -702,6 +723,7 @@ export default defineConfig({
 ```
 
 #### **GitHub Pages**
+
 ```bash
 # Use static adapter
 npm install @astrojs/static
@@ -713,6 +735,7 @@ export default defineConfig({
 ```
 
 #### **Cloudflare Pages**
+
 ```bash
 # Install Cloudflare adapter
 npm install @astrojs/cloudflare
@@ -751,7 +774,7 @@ See the [LICENSE](LICENSE) file for details.
 
 **Antonio Masiá**
 
-- Website: [betapermanente.dev](https://betapermanente.dev)
+- Website: [betapermanente.link](https://betapermanente.link)
 - Twitter: [@ajmasia](https://twitter.com/ajmasia)
 - GitHub: [@ajmasia](https://github.com/ajmasia)
 - LinkedIn: [ajmasia](https://linkedin.com/in/ajmasia)
