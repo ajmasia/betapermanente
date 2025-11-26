@@ -1,7 +1,7 @@
 ---
 title: "Integrando Tmux en nuestro flujo de trabajo"
 description: "Guía práctica para entender, instalar y configurar Tmux, el multiplexor de terminal que mejora la productividad y organización de desarrolladores y usuarios avanzados de Linux o MacOS."
-date: "Nov 25 2025"
+date: "Nov 26 2025"
 author: "ajmasia"
 heroImage: "/images/blog/integrando-tmux-en-nuestro-flujo-de-trabajo_portada.png"
 showHeroImage: true
