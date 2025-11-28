@@ -1,11 +1,11 @@
 ---
 title: "Protege tu identidad digital con Nitrokey 3"
 description: "Tu privacidad merece protección real: descubre Nitrokey 3, la llave de seguridad open-source que refuerza tu identidad digital y compite cara a cara con YubiKey."
-date: "Nov 27 2025"
+date: "Nov 28 2025"
 author: "ajmasia"
 heroImage: "/images/blog/protege-tu-identidad-digital-con-nitrokey-3.jpg"
 showHeroImage: true
-tags: ["offtopic", "reflexión"]
+tags: ["seguridad", "privacidad", "hardware"]
 lang: es
 draft: false
 ---
