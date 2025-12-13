@@ -1,0 +1,52 @@
+---
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import MainLayout from "../../layouts/MainLayout/MainLayout.astro";
+import { SITE } from "../../config.ts";
+
+type BlogPost = CollectionEntry<"blog">;
+
+const posts: BlogPost[] = await getCollection(
+  "blog",
+  ({ data }: BlogPost) => data.draft !== true && data.lang == "es"
+);
+
+// Count posts per tag
+const tagCounts = new Map<string, number>();
+posts.forEach((post) => {
+  post.data.tags?.forEach((tag) => {
+    tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
+  });
+});
+
+// Sort tags alphabetically
+const sortedTags = [...tagCounts.entries()].sort((a, b) =>
+  a[0].localeCompare(b[0], "es")
+);
+---
+
+<MainLayout
+  title={`${SITE.title}: Tags`}
+  description="Explora todos los tags del blog"
+>
+  <div class="container mx-auto">
+    <h1>Tags</h1>
+    <p class="text-slate-500 dark:text-slate-400 mb-8">
+      Explora los artículos por temática
+    </p>
+
+    <div class="flex flex-wrap gap-3">
+      {
+        sortedTags.map(([tag, count]) => (
+          <a
+            href={`/blog/tag/${tag}`}
+            class="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-red-400 hover:text-white dark:hover:bg-red-400 text-slate-700 dark:text-slate-300 rounded-lg transition-colors"
+          >
+            <span>{tag}</span>
+            <span class="text-sm opacity-70">({count})</span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</MainLayout>
