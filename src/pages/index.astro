@@ -6,6 +6,7 @@ import Hero from "../components/Hero.astro";
 import LatestPosts from "../components/LatestPosts.astro";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
+import { SITE } from "../config.ts";
 
 type BlogPost = CollectionEntry<"blog">;
 
@@ -22,5 +23,8 @@ const latestPosts = posts.slice(0, 4);
 
 <MainLayout title={getPageTitle(Astro.url.pathname)}>
   <Hero />
-  <LatestPosts latestPosts={latestPosts} />
+  <LatestPosts
+    latestPosts={latestPosts}
+    showImages={SITE.showLatestPostsImages}
+  />
 </MainLayout>

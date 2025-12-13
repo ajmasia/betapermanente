@@ -10,9 +10,10 @@ type BlogPost = CollectionEntry<"blog">;
 
 interface Props {
   latestPosts: BlogPost[];
+  showImages?: boolean;
 }
 
-const { latestPosts } = Astro.props;
+const { latestPosts, showImages = true } = Astro.props;
 ---
 
 <section class="container mx-auto mt-20">
@@ -36,9 +37,10 @@ const { latestPosts } = Astro.props;
   >
     {
       latestPosts.map((post, index) => (
-        <article
+        <a
+          href={`/blog/${post.slug}`}
           class:list={[
-            "p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900",
+            "block rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 overflow-hidden transition-all duration-300 hover:border-slate-300 dark:hover:border-slate-600 hover:shadow-lg",
             {
               "lg:hidden xl:block": index === 2 && latestPosts.length === 3,
             },
@@ -47,10 +49,16 @@ const { latestPosts } = Astro.props;
             },
           ]}
         >
-          <h3 class="text-2xl font-semibold mb-2">
-            <a href={`/blog/${post.slug}`} class="link">
-              {post.data.title}
-            </a>
+          {showImages && post.data.heroImage && (
+            <img
+              src={post.data.heroImage}
+              alt={post.data.title}
+              class="w-full h-48 object-cover"
+            />
+          )}
+          <div class="p-6">
+          <h3 class="text-2xl font-semibold mb-2 text-slate-600 dark:text-slate-300">
+            {post.data.title}
           </h3>
           {post.data.description && <p class="mb-2">{post.data.description}</p>}
           <p class="flex text-slate-500 dark:text-slate-400 text-sm items-center mb-2">
@@ -77,7 +85,8 @@ const { latestPosts } = Astro.props;
               ))}
             </div>
           )}
-        </article>
+          </div>
+        </a>
       ))
     }
   </div>

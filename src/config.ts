@@ -5,6 +5,7 @@ export const SITE = {
   url: "https://betapermanente.link",
   lang: "es",
   image: "/images/og/og-default.svg",
+  showLatestPostsImages: true,
 } as const;
 
 export const NAVIGATION = [
