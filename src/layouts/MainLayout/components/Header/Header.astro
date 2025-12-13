@@ -19,6 +19,7 @@ const isActiveHref = (current: string, href: string) =>
 <header transition:animate="none" class="container mx-auto lg:flex pt-5">
   <Astronav>
     <div class="flex w-full justify-between h-16">
+      <!-- Logo -->
       <div class="flex items-center">
         <a href="/" class="flex items-center space-x-2">
           <!-- Icono Open Source -->
@@ -42,7 +43,28 @@ const isActiveHref = (current: string, href: string) =>
           </div>
         </a>
       </div>
-      <div class="flex items-center gap-2">
+      <!-- Right side: Search, Theme, Menu -->
+      <div class="flex items-center gap-1">
+        <!-- Search button -->
+        <button
+          data-search-trigger
+          aria-label="Buscar"
+          class="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"
+          title="Buscar (Ctrl+/)"
+        >
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+        </button>
         <ThemeToggle />
         <div class="self-center block lg:hidden pt-1">
           <button id="astronav-menu" aria-label="Toggle Menu">
@@ -88,10 +110,11 @@ const isActiveHref = (current: string, href: string) =>
                   href={item.href}
                   target={isExternal ? "_blank" : undefined}
                   rel={isExternal ? "noopener noreferrer" : undefined}
-                  class={`transition-colors ${
+                  data-text={item.name}
+                  class={`transition-colors duration-300 ${
                     isActive
-                      ? "text-red-400 font-semibold transition-colors duration-300"
-                      : "text-slate-400 hover:dark:text-slate-200 hover:text-slate-600 transition-colors duration-300"
+                      ? "text-red-400 nav-link-active"
+                      : "text-slate-400 hover:dark:text-slate-200 hover:text-slate-600"
                   }`}
                 >
                   {item.name}

@@ -19,3 +19,23 @@
   #astronav-menu .astronav-close-icon:not(.hidden) {
     transform: rotate(0deg) scale(1);
   }
+
+  /* Nav links - reserve space for bold text to prevent layout shift */
+  nav ul li a {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav ul li a::after {
+    content: attr(data-text);
+    font-weight: 600;
+    height: 0;
+    visibility: hidden;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .nav-link-active {
+    font-weight: 600;
+  }
