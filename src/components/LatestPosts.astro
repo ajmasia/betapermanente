@@ -81,7 +81,7 @@ const { latestPosts, showImages = true } = Astro.props;
           {post.data.tags && post.data.tags.length > 0 && (
             <div class="flex flex-wrap gap-2">
               {post.data.tags.map((tag: string) => (
-                <Tag tag={tag} />
+                <Tag tag={tag} linked={false} />
               ))}
             </div>
           )}

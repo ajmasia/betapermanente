@@ -1,0 +1,110 @@
+---
+import { getCollection } from "astro:content";
+import type { CollectionEntry, GetStaticPaths } from "astro:content";
+
+import MainLayout from "../../../layouts/MainLayout/MainLayout.astro";
+import CalendarIcon from "../../../components/icons/CalendarIcon.astro";
+import ClockIcon from "../../../components/icons/ClockIcon.astro";
+import Tag from "../../../components/Tag.astro";
+import { SITE } from "../../../config.ts";
+import {
+  calculateReadingTime,
+  formatReadingTime,
+} from "../../../lib/readingTime.ts";
+
+type BlogPost = CollectionEntry<"blog">;
+
+export const getStaticPaths = (async () => {
+  const posts = await getCollection(
+    "blog",
+    ({ data }: BlogPost) => data.draft !== true && data.lang === "es",
+  );
+
+  // Get all unique tags
+  const tags = new Set<string>();
+  posts.forEach((post) => {
+    post.data.tags?.forEach((tag) => {
+      tags.add(tag.toLowerCase().replace(/\s+/g, "-"));
+    });
+  });
+
+  // Create a path for each tag
+  return Array.from(tags).map((tag) => ({
+    params: { tag },
+    props: { tag },
+  }));
+}) satisfies GetStaticPaths;
+
+const { tag } = Astro.props;
+
+// Get all posts with this tag
+const posts = await getCollection(
+  "blog",
+  ({ data }: BlogPost) =>
+    data.draft !== true &&
+    data.lang === "es" &&
+    data.tags?.some((t) => t.toLowerCase().replace(/\s+/g, "-") === tag),
+);
+
+// Sort posts by date (most recent first)
+posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+// Get the original tag name from the first post
+const originalTagName = posts[0]?.data.tags?.find(
+  (t) => t.toLowerCase().replace(/\s+/g, "-") === tag
+) || tag;
+---
+
+<MainLayout
+  title={`${SITE.title}: ${originalTagName}`}
+  description={`Artículos sobre ${originalTagName}`}
+>
+  <div class="container mx-auto">
+    <div class="mb-8">
+      <a href="/blog" class="link text-sm">&larr; Volver al blog</a>
+    </div>
+    <h1 class="flex items-center gap-3">
+      <span>Publicaciones sobre</span>
+      <Tag tag={originalTagName} linked={false} />
+    </h1>
+    <p class="text-slate-500 dark:text-slate-400 mb-8">
+      {posts.length} {posts.length === 1 ? "artículo" : "artículos"}
+    </p>
+    {
+      posts.map((post) => (
+        <article class="mb-8">
+          <h2 class="text-2xl font-semibold mb-2">
+            <a href={`/blog/${post.slug}`} class="link">
+              {post.data.title}
+            </a>
+          </h2>
+          {post.data.description && <p class="mb-2">{post.data.description}</p>}
+          <p class="flex text-slate-500 dark:text-slate-400 text-sm items-center mb-2">
+            <span class="inline-flex items-center gap-1">
+              <CalendarIcon class="h-4 w-4 flex-shrink-0" />
+              <span class="pt-0.5">
+                {post.data.date.toLocaleDateString("es-ES", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </span>
+            </span>
+            <span class="mx-2">·</span>
+            <span class="inline-flex items-center gap-1">
+              <ClockIcon class="h-4 w-4 flex-shrink-0" />
+              <span>{formatReadingTime(calculateReadingTime(post.body))}</span>
+            </span>
+          </p>
+          {post.data.tags && post.data.tags.length > 0 && (
+            <div class="flex flex-wrap gap-2">
+              {post.data.tags.map((t: string) => (
+                <Tag tag={t} />
+              ))}
+            </div>
+          )}
+        </article>
+      ))
+    }
+  </div>
+</MainLayout>

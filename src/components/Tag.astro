@@ -3,14 +3,26 @@ import TagIcon from "./icons/TagIcon.astro";
 
 interface Props {
   tag: string;
+  linked?: boolean;
 }
 
-const { tag } = Astro.props;
+const { tag, linked = true } = Astro.props;
+const slug = tag.toLowerCase().replace(/\s+/g, "-");
 ---
 
-<span
-  class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded bg-slate-200 text-slate-700 dark:bg-slate-700 dark:text-slate-300"
->
-  <TagIcon class="h-3 w-3 flex-shrink-0" />
-  <span>{tag}</span>
-</span>
+{linked ? (
+  <a
+    href={`/blog/tag/${slug}`}
+    class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded bg-slate-200 text-slate-700 dark:bg-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-600 transition-colors"
+  >
+    <TagIcon class="h-3 w-3 flex-shrink-0" />
+    <span>{tag}</span>
+  </a>
+) : (
+  <span
+    class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded bg-slate-200 text-slate-700 dark:bg-slate-700 dark:text-slate-300"
+  >
+    <TagIcon class="h-3 w-3 flex-shrink-0" />
+    <span>{tag}</span>
+  </span>
+)}
