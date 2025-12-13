@@ -27,6 +27,7 @@ pnpm-debug.log*
 
 # AI files
 CLAUDE.md
+.ai-context/
 
 # Internal notes
 notes.md
