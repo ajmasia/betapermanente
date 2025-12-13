@@ -5,7 +5,7 @@ date: "Nov 21 2025"
 author: "ajmasia"
 heroImage: "/images/blog/juegos-de-guerra-donde-todo-empezo.jpg"
 showHeroImage: true
-tags: ["offtopic", "reflexión"]
+tags: ["offtopic"]
 lang: es
 draft: false
 ---

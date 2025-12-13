@@ -5,7 +5,7 @@ date: "Dec 13 2025"
 author: "ajmasia"
 heroImage: "/images/blog/guia-basica-sobre-ssh.png"
 showHeroImage: true
-tags: ["ssh", "security", "git", "bitwarden"]
+tags: ["ssh", "seguridad", "git", "bitwarden", "tools"]
 lang: es
 draft: false
 ---
