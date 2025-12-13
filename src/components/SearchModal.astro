@@ -1,0 +1,388 @@
+---
+// Global search modal component with fuzzy search
+// Triggered by header button or Cmd/Ctrl + K shortcut
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+type BlogPost = CollectionEntry<"blog">;
+
+const posts: BlogPost[] = await getCollection(
+  "blog",
+  ({ data }: BlogPost) => data.draft !== true && data.lang == "es"
+);
+
+// Prepare search index data
+const searchIndex = posts.map((post) => ({
+  slug: post.slug,
+  title: post.data.title,
+  description: post.data.description || "",
+  tags: post.data.tags || [],
+  date: post.data.date.toISOString(),
+  url: `/blog/${post.slug}`,
+}));
+---
+
+<!-- Search Modal Backdrop -->
+<div
+  id="search-modal-backdrop"
+  class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-200"
+  aria-hidden="true"
+>
+</div>
+
+<!-- Search Modal -->
+<div
+  id="search-modal"
+  class="fixed inset-x-4 top-[10%] md:inset-x-auto md:left-1/2 md:-translate-x-1/2 md:w-full md:max-w-xl z-50 hidden scale-95 opacity-0 transition-[transform,opacity] duration-200"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Buscar en el sitio"
+>
+  <div
+    class="bg-white dark:bg-slate-800 rounded-xl shadow-2xl border border-slate-200 dark:border-slate-700 overflow-hidden"
+  >
+    <!-- Search Input -->
+    <div class="relative border-b border-slate-200 dark:border-slate-700">
+      <svg
+        class="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+      </svg>
+      <input
+        type="text"
+        id="search-input"
+        placeholder="Buscar artículos..."
+        autocomplete="off"
+        class="w-full py-4 pl-12 pr-4 bg-transparent text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:outline-none text-lg"
+      />
+      <div
+        class="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-slate-400 hidden md:block"
+      >
+        <kbd
+          class="px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded border border-slate-300 dark:border-slate-600"
+          >ESC</kbd
+        >
+      </div>
+    </div>
+
+    <!-- Results Container -->
+    <div
+      id="search-results-container"
+      class="max-h-[60vh] overflow-y-auto overscroll-contain"
+    >
+      <!-- Empty state -->
+      <div id="search-empty" class="p-8 text-center text-slate-500">
+        <p class="text-sm">Escribe para buscar artículos</p>
+        <p class="text-xs mt-2 text-slate-400">
+          Busca por título, descripción o tags
+        </p>
+      </div>
+
+      <!-- No results -->
+      <div id="search-no-results" class="p-8 text-center text-slate-500 hidden">
+        <p class="text-sm">No se encontraron resultados</p>
+      </div>
+
+      <!-- Results list -->
+      <ul id="search-results" class="divide-y divide-slate-100 dark:divide-slate-700 hidden">
+      </ul>
+    </div>
+
+    <!-- Footer -->
+    <div
+      class="px-4 py-3 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-700 text-xs text-slate-500 flex items-center justify-between"
+    >
+      <div class="flex items-center gap-4">
+        <span class="flex items-center gap-1">
+          <kbd
+            class="px-1.5 py-0.5 bg-slate-200 dark:bg-slate-700 rounded text-[10px]"
+            >&uarr;&darr;</kbd
+          >
+          navegar
+        </span>
+        <span class="flex items-center gap-1">
+          <kbd
+            class="px-1.5 py-0.5 bg-slate-200 dark:bg-slate-700 rounded text-[10px]"
+            >Enter</kbd
+          >
+          abrir
+        </span>
+      </div>
+      <span class="hidden md:inline">
+        <kbd
+          class="px-1.5 py-0.5 bg-slate-200 dark:bg-slate-700 rounded text-[10px]"
+          >Ctrl</kbd
+        >
+        +
+        <kbd
+          class="px-1.5 py-0.5 bg-slate-200 dark:bg-slate-700 rounded text-[10px]"
+          >/</kbd
+        >
+        para buscar
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- Search index data -->
+<script
+  id="search-index-data"
+  type="application/json"
+  set:html={JSON.stringify(searchIndex)}
+/>
+
+<script>
+  import Fuse from "fuse.js";
+
+  interface SearchItem {
+    slug: string;
+    title: string;
+    description: string;
+    tags: string[];
+    date: string;
+    url: string;
+  }
+
+  function initSearchModal() {
+    const backdrop = document.getElementById("search-modal-backdrop");
+    const modal = document.getElementById("search-modal");
+    const input = document.getElementById("search-input") as HTMLInputElement;
+    const resultsContainer = document.getElementById("search-results");
+    const emptyState = document.getElementById("search-empty");
+    const noResults = document.getElementById("search-no-results");
+    const searchTriggers = document.querySelectorAll("[data-search-trigger]");
+
+    if (!backdrop || !modal || !input || !resultsContainer || !emptyState || !noResults) return;
+
+    // Load search index
+    const indexData = document.getElementById("search-index-data");
+    if (!indexData) return;
+
+    let searchIndex: SearchItem[];
+    try {
+      searchIndex = JSON.parse(indexData.textContent || "[]");
+    } catch {
+      console.error("Failed to parse search index");
+      return;
+    }
+
+    // Initialize Fuse.js
+    const fuse = new Fuse(searchIndex, {
+      keys: [
+        { name: "title", weight: 0.4 },
+        { name: "description", weight: 0.3 },
+        { name: "tags", weight: 0.3 },
+      ],
+      threshold: 0.3,
+      ignoreLocation: true,
+      includeScore: true,
+      minMatchCharLength: 2,
+    });
+
+    let selectedIndex = 0;
+    let currentResults: SearchItem[] = [];
+
+    function openModal() {
+      backdrop!.classList.remove("hidden");
+      modal!.classList.remove("hidden");
+      // Trigger animation
+      requestAnimationFrame(() => {
+        backdrop!.classList.remove("opacity-0");
+        modal!.classList.remove("scale-95", "opacity-0");
+        modal!.classList.add("scale-100", "opacity-100");
+      });
+      input!.focus();
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModal() {
+      backdrop!.classList.add("opacity-0");
+      modal!.classList.remove("scale-100", "opacity-100");
+      modal!.classList.add("scale-95", "opacity-0");
+      setTimeout(() => {
+        backdrop!.classList.add("hidden");
+        modal!.classList.add("hidden");
+        input!.value = "";
+        resetResults();
+      }, 200);
+      document.body.style.overflow = "";
+    }
+
+    function resetResults() {
+      resultsContainer!.innerHTML = "";
+      resultsContainer!.classList.add("hidden");
+      emptyState!.classList.remove("hidden");
+      noResults!.classList.add("hidden");
+      selectedIndex = 0;
+      currentResults = [];
+    }
+
+    function renderResults(results: SearchItem[]) {
+      currentResults = results;
+      selectedIndex = 0;
+
+      if (results.length === 0) {
+        resultsContainer!.classList.add("hidden");
+        emptyState!.classList.add("hidden");
+        noResults!.classList.remove("hidden");
+        return;
+      }
+
+      emptyState!.classList.add("hidden");
+      noResults!.classList.add("hidden");
+      resultsContainer!.classList.remove("hidden");
+
+      resultsContainer!.innerHTML = results
+        .map(
+          (item, index) => `
+          <li>
+            <a
+              href="${item.url}"
+              class="search-result block px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors ${index === 0 ? "bg-slate-100 dark:bg-slate-700" : ""}"
+              data-index="${index}"
+            >
+              <p class="font-medium text-slate-900 dark:text-slate-100">${item.title}</p>
+              ${item.description ? `<p class="text-sm text-slate-500 dark:text-slate-400 mt-1 line-clamp-1">${item.description}</p>` : ""}
+              ${
+                item.tags.length > 0
+                  ? `<div class="flex gap-1 mt-2">
+                      ${item.tags.map((tag) => `<span class="text-xs px-2 py-0.5 bg-slate-200 dark:bg-slate-600 text-slate-600 dark:text-slate-300 rounded-full">${tag}</span>`).join("")}
+                    </div>`
+                  : ""
+              }
+            </a>
+          </li>
+        `
+        )
+        .join("");
+    }
+
+    function updateSelection(newIndex: number) {
+      if (currentResults.length === 0) return;
+
+      const results = resultsContainer!.querySelectorAll(".search-result");
+      results[selectedIndex]?.classList.remove(
+        "bg-slate-100",
+        "dark:bg-slate-700"
+      );
+
+      selectedIndex = Math.max(0, Math.min(newIndex, currentResults.length - 1));
+
+      const selected = results[selectedIndex];
+      selected?.classList.add("bg-slate-100", "dark:bg-slate-700");
+      selected?.scrollIntoView({ block: "nearest" });
+    }
+
+    function navigateToSelected() {
+      if (currentResults.length > 0 && currentResults[selectedIndex]) {
+        window.location.href = currentResults[selectedIndex].url;
+      }
+    }
+
+    // Search input handler with debounce
+    let debounceTimer: ReturnType<typeof setTimeout>;
+    input.addEventListener("input", () => {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        const query = input.value.trim();
+        if (query === "") {
+          resetResults();
+          return;
+        }
+        const results = fuse.search(query).map((r) => r.item);
+        renderResults(results);
+      }, 100);
+    });
+
+    // Keyboard navigation
+    input.addEventListener("keydown", (e) => {
+      switch (e.key) {
+        case "ArrowDown":
+          e.preventDefault();
+          updateSelection(selectedIndex + 1);
+          break;
+        case "ArrowUp":
+          e.preventDefault();
+          updateSelection(selectedIndex - 1);
+          break;
+        case "Enter":
+          e.preventDefault();
+          navigateToSelected();
+          break;
+        case "Escape":
+          e.preventDefault();
+          closeModal();
+          break;
+      }
+    });
+
+    // Click on result
+    resultsContainer.addEventListener("click", (e) => {
+      const result = (e.target as HTMLElement).closest(".search-result");
+      if (result) {
+        const index = parseInt(result.getAttribute("data-index") || "0", 10);
+        selectedIndex = index;
+        // Let the link navigate naturally
+      }
+    });
+
+    // Open modal triggers
+    searchTriggers.forEach((trigger) => {
+      trigger.addEventListener("click", (e) => {
+        e.preventDefault();
+        openModal();
+      });
+    });
+
+    // Close on backdrop click
+    backdrop.addEventListener("click", closeModal);
+
+    // Store openModal/closeModal on window for global access
+    (window as any).__searchModal = { openModal, closeModal, isOpen: () => !modal.classList.contains("hidden") };
+  }
+
+  // Global keyboard shortcut (Ctrl/Cmd + /) - only register once
+  function handleSearchShortcut(e: KeyboardEvent) {
+    if ((e.ctrlKey || e.metaKey) && e.key === "/") {
+      e.preventDefault();
+      const searchModal = (window as any).__searchModal;
+      if (searchModal) {
+        if (searchModal.isOpen()) {
+          searchModal.closeModal();
+        } else {
+          searchModal.openModal();
+        }
+      }
+    }
+  }
+
+  // Remove existing listener before adding (prevents duplicates)
+  document.removeEventListener("keydown", handleSearchShortcut);
+  document.addEventListener("keydown", handleSearchShortcut);
+
+  // Initialize on page load
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initSearchModal);
+  } else {
+    initSearchModal();
+  }
+
+  // Re-initialize after Astro View Transitions
+  document.addEventListener("astro:page-load", initSearchModal);
+</script>
+
+<style>
+  .line-clamp-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
