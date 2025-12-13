@@ -71,7 +71,6 @@ public/
 |----------|-------------|
 | [PUBLISHING.md](./PUBLISHING.md) | Step-by-step checklist for publishing blog posts |
 | [CONTRIBUTING.md](./CONTRIBUTING.md) | Git workflow, versioning, and contribution guidelines |
-| [CLAUDE.md](./CLAUDE.md) | AI assistant context |
 
 ## License
 
