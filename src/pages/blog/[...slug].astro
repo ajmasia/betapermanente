@@ -70,13 +70,21 @@ const socialTitle = post.data.title;
       </p>
       {
         post.data.tags && post.data.tags.length > 0 && (
-          <div class="flex flex-wrap gap-2">
+          <div class="flex flex-wrap gap-2 mb-4">
             {post.data.tags.map((tag: string) => (
               <Tag tag={tag} />
             ))}
           </div>
         )
       }
+      <p class="text-slate-500 dark:text-slate-400 text-sm">
+        ¿Ves alguna errata o quieres modificar algo? <a
+          href={`https://github.com/ajmasia/betapermanente/edit/main/src/content/blog/${slug}.md`}
+          target="_blank"
+          rel="noopener"
+          class="link"
+        >Haz una Pull Request</a>
+      </p>
     </header>
     <Prose
       heroImage={post.data.heroImage}
