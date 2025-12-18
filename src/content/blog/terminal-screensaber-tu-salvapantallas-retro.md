@@ -5,7 +5,7 @@ date: "Dec 18 2025"
 author: "ajmasia"
 heroImage: "/images/blog/terminal-screensaver-tu-salvapantallas-retro.png"
 showHeroImage: true
-tags: ["linux", "gnome", "proyectos", "open-source", "debian"]
+tags: ["linux", "gnome", "proyectos", "debian"]
 lang: es
 draft: false
 ---
