@@ -7,6 +7,7 @@ import MainLayout from "../../layouts/MainLayout/MainLayout.astro";
 import { SITE } from "../../config.ts";
 import CalendarIcon from "../../components/icons/CalendarIcon.astro";
 import ClockIcon from "../../components/icons/ClockIcon.astro";
+import GitHubIcon from "../../components/icons/GitHubIcon.astro";
 import Tag from "../../components/Tag.astro";
 import Author from "../../components/Author.astro";
 import PageViewsCounter from "../../components/PageViewsCounter.astro";
@@ -77,13 +78,14 @@ const socialTitle = post.data.title;
           </div>
         )
       }
-      <p class="text-slate-500 dark:text-slate-400 text-sm">
-        ¿Ves alguna errata o quieres modificar algo? <a
+      <p class="text-slate-500 dark:text-slate-400 text-sm inline-flex items-center gap-1.5">
+        <GitHubIcon class="h-4 w-4" />
+        <span>¿Ves alguna errata o quieres modificar algo? <a
           href={`https://github.com/ajmasia/betapermanente/edit/main/src/content/blog/${slug}.md`}
           target="_blank"
           rel="noopener"
           class="link"
-        >Haz una Pull Request</a>
+        >Haz una Pull Request</a></span>
       </p>
     </header>
     <Prose
