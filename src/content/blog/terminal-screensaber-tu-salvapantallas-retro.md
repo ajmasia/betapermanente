@@ -26,6 +26,12 @@ animados, basándose en un banner definido en la configuración `banner.txt`. Lo
 [Python](https://www.python.org/) [Terminal Text Effects](https://github.com/ChrisBuilds/terminaltexteffects). Si pulsas cualquier tecla estando el screensaver activo,
 vuelves a tu escritorio recuperando su estado inicial, mostrando el desbloqueo de sesión si ha transcurrido el tiempo establecido en GNOME para tal situación. Así de simple.
 
+Te dejo por aquí un vídeo de demostración:
+
+  <video controls width="100%">
+    <source src="/video/demo_terminal-screensaver.mp4" type="video/mp4">
+  </video>
+
 ## Cómo instalarlo
 
 Necesitas un sistema [Debian](https://www.debian.org/) 13+ o [Ubuntu](https://ubuntu.com/) 22.04+ con GNOME y uno de estos terminales: [Alacritty](https://alacritty.org/),
