@@ -16,3 +16,11 @@ const { tags, linked = true } = Astro.props;
     ))}
   </div>
 )}
+
+<style>
+  /* Tags stay clickable above the stretched link */
+  .card-tags {
+    position: relative;
+    z-index: 1;
+  }
+</style>

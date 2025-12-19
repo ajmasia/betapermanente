@@ -22,3 +22,22 @@ const HeadingTag = level;
     {title}
   </a>
 </HeadingTag>
+
+<style>
+  @reference "../../../styles/global.css";
+
+  /* Stretched link pattern */
+  .card-link {
+    @apply text-slate-600 dark:text-slate-300 no-underline transition-colors duration-300;
+  }
+
+  .card-link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+  }
+
+  :global(.card:hover) .card-link {
+    @apply text-red-400;
+  }
+</style>

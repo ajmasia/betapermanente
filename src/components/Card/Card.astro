@@ -65,28 +65,3 @@ const isHorizontal = variant === "horizontal";
     )}
   </div>
 </article>
-
-<style>
-  @reference "../../styles/global.css";
-
-  /* Stretched link pattern */
-  .card-link {
-    @apply text-slate-600 dark:text-slate-300 no-underline transition-colors duration-300;
-  }
-
-  .card-link::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-  }
-
-  .card:hover .card-link {
-    @apply text-red-400;
-  }
-
-  /* Tags stay clickable above the stretched link */
-  .card-tags {
-    position: relative;
-    z-index: 1;
-  }
-</style>
