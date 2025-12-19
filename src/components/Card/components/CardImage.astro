@@ -1,0 +1,31 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  variant?: "vertical" | "horizontal";
+}
+
+const { src, alt, variant = "vertical" } = Astro.props;
+const isHorizontal = variant === "horizontal";
+---
+
+<>
+  {/* Vertical image (always shown in vertical, hidden on xl in horizontal) */}
+  <div class:list={[{ "xl:hidden": isHorizontal }]}>
+    <img
+      src={src}
+      alt={alt}
+      class="w-full h-auto"
+    />
+  </div>
+  {/* Horizontal image (only shown on xl in horizontal variant) */}
+  {isHorizontal && (
+    <div class="hidden xl:block flex-shrink-0">
+      <img
+        src={src}
+        alt={alt}
+        class="h-[210px] w-auto"
+      />
+    </div>
+  )}
+</>

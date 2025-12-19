@@ -1,0 +1,24 @@
+---
+interface Props {
+  title: string;
+  href: string;
+  level?: "h2" | "h3";
+}
+
+const { title, href, level = "h2" } = Astro.props;
+const HeadingTag = level;
+---
+
+<HeadingTag
+  class:list={[
+    "font-semibold mb-2 text-slate-600 dark:text-slate-300",
+    {
+      "text-2xl": level === "h2",
+      "text-xl lg:text-2xl": level === "h3",
+    },
+  ]}
+>
+  <a href={href} class="card-link">
+    {title}
+  </a>
+</HeadingTag>

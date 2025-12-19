@@ -1,0 +1,19 @@
+---
+interface Props {
+  description?: string;
+  truncate?: boolean;
+}
+
+const { description = "", truncate = false } = Astro.props;
+---
+
+<p
+  class:list={[
+    "mb-2",
+    {
+      "line-clamp-2 min-h-[3rem]": truncate,
+    },
+  ]}
+>
+  {description}
+</p>

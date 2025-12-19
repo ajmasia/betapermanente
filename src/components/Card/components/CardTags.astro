@@ -1,0 +1,18 @@
+---
+import Tag from "../../Tag.astro";
+
+interface Props {
+  tags: string[];
+  linked?: boolean;
+}
+
+const { tags, linked = true } = Astro.props;
+---
+
+{tags.length > 0 && (
+  <div class="card-tags flex flex-wrap gap-2">
+    {tags.map((tag: string) => (
+      <Tag tag={tag} linked={linked} />
+    ))}
+  </div>
+)}
