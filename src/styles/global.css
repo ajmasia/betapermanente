@@ -82,9 +82,10 @@ main {
   content: none;
 }
 
-/* Prevent tables and code blocks from causing horizontal overflow */
+/* Scrollable tables on mobile */
 .prose table {
-  @apply block overflow-x-auto;
+  @apply block overflow-x-auto whitespace-nowrap;
+  -webkit-overflow-scrolling: touch;
 }
 
 .prose pre {
