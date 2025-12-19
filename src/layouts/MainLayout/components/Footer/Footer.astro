@@ -29,7 +29,12 @@ import { SITE } from "../../../../config.ts";
     <div
       class="flex flex-wrap justify-center items-center gap-1 text-xs text-slate-500 dark:text-slate-500"
     >
-      <span>{SITE.title} v{version}</span>
+      <span>{SITE.title} <a
+          href="https://github.com/ajmasia/betapermanente/releases"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="link">v{version}</a
+        ></span>
       <span>·</span>
       <span>Desarrollado con Astro</span>
       <span class="hidden sm:inline">·</span>
