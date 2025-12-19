@@ -1,0 +1,52 @@
+---
+import TwitterIcon from "../../../icons/TwitterIcon.astro";
+import GitHubIcon from "../../../icons/GitHubIcon.astro";
+import LinkedInIcon from "../../../icons/LinkedInIcon.astro";
+
+interface Props {
+  linkedin?: string;
+  github?: string;
+  twitter?: string;
+}
+
+const { linkedin, github, twitter } = Astro.props;
+const hasLinks = linkedin || github || twitter;
+---
+
+{hasLinks && (
+  <div class="flex gap-3 items-center">
+    {linkedin && (
+      <a
+        href={linkedin}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100 transition-colors"
+        aria-label="LinkedIn"
+      >
+        <LinkedInIcon class="h-5 w-5" />
+      </a>
+    )}
+    {github && (
+      <a
+        href={github}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100 transition-colors"
+        aria-label="GitHub"
+      >
+        <GitHubIcon class="h-5 w-5" />
+      </a>
+    )}
+    {twitter && (
+      <a
+        href={twitter}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100 transition-colors"
+        aria-label="Twitter"
+      >
+        <TwitterIcon class="h-5 w-5" />
+      </a>
+    )}
+  </div>
+)}

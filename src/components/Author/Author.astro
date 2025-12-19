@@ -1,0 +1,39 @@
+---
+import { AUTHORS, type AuthorId } from "../../config.ts";
+import Avatar from "./components/Avatar.astro";
+import SocialLinks from "./components/SocialLinks.astro";
+
+interface Props {
+  authorId: AuthorId;
+}
+
+const { authorId } = Astro.props;
+const author = AUTHORS[authorId];
+
+if (!author) {
+  throw new Error(`Author with id "${authorId}" not found in config`);
+}
+---
+
+<aside
+  class="mt-12 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900"
+>
+  <div class="flex items-start gap-4">
+    <Avatar src={author.avatar} alt={author.name} />
+
+    <div class="flex-1">
+      <h3 class="!mb-1">{author.name}</h3>
+      <p class="text-sm text-slate-600 dark:text-slate-400 mb-2">
+        {author.bio}
+      </p>
+
+      {author.social && (
+        <SocialLinks
+          linkedin={author.social.linkedin}
+          github={author.social.github}
+          twitter={author.social.twitter}
+        />
+      )}
+    </div>
+  </div>
+</aside>
