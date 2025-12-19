@@ -40,37 +40,50 @@ posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
     </div>
     {
       posts.map((post) => (
-        <article class="mb-8">
-          <h2 class="text-2xl font-semibold mb-2">
-            <a href={`/blog/${post.slug}`} class="link">
-              {post.data.title}
-            </a>
-          </h2>
-          {post.data.description && <p class="mb-2">{post.data.description}</p>}
-          <p class="flex text-slate-500 dark:text-slate-400 text-sm items-center mb-2">
-            <span class="inline-flex items-center gap-1">
-              <CalendarIcon class="h-4 w-4 flex-shrink-0" />
-              <span class="pt-0.5">
-                {post.data.date.toLocaleDateString("es-ES", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </span>
-            </span>
-            <span class="mx-2">·</span>
-            <span class="inline-flex items-center gap-1">
-              <ClockIcon class="h-4 w-4 flex-shrink-0" />
-              <span>{formatReadingTime(calculateReadingTime(post.body))}</span>
-            </span>
-          </p>
-          {post.data.tags && post.data.tags.length > 0 && (
-            <div class="flex flex-wrap gap-2">
-              {post.data.tags.map((tag: string) => (
-                <Tag tag={tag} />
-              ))}
+        <article class="mb-18 sm:mb-14 last:mb-0">
+          <div class={post.data.heroImage ? "flex flex-col sm:flex-row gap-4 sm:gap-6" : ""}>
+            {post.data.heroImage && (
+              <a href={`/blog/${post.slug}`} class="block flex-shrink-0 sm:w-52 md:w-60">
+                <img
+                  src={post.data.heroImage}
+                  alt={post.data.title}
+                  class="w-full h-auto sm:h-36 md:h-40 object-cover rounded-lg"
+                />
+              </a>
+            )}
+            <div class="flex-1">
+              <h2 class="text-2xl font-semibold mb-2">
+                <a href={`/blog/${post.slug}`} class="link">
+                  {post.data.title}
+                </a>
+              </h2>
+              {post.data.description && <p class="mb-2">{post.data.description}</p>}
+              <p class="flex text-slate-500 dark:text-slate-400 text-sm items-center mb-2">
+                <span class="inline-flex items-center gap-1">
+                  <CalendarIcon class="h-4 w-4 flex-shrink-0" />
+                  <span class="pt-0.5">
+                    {post.data.date.toLocaleDateString("es-ES", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
+                  </span>
+                </span>
+                <span class="mx-2">·</span>
+                <span class="inline-flex items-center gap-1">
+                  <ClockIcon class="h-4 w-4 flex-shrink-0" />
+                  <span>{formatReadingTime(calculateReadingTime(post.body))}</span>
+                </span>
+              </p>
+              {post.data.tags && post.data.tags.length > 0 && (
+                <div class="flex flex-wrap gap-2">
+                  {post.data.tags.map((tag: string) => (
+                    <Tag tag={tag} />
+                  ))}
+                </div>
+              )}
             </div>
-          )}
+          </div>
         </article>
       ))
     }
