@@ -5,7 +5,7 @@
 <button
   id="back-to-top"
   aria-label="Volver arriba"
-  class="fixed bottom-18 right-4 sm:bottom-16 sm:right-8 md:bottom-8 z-50 h-8 w-8 sm:h-12 sm:w-12 rounded-full bg-red-400 text-white shadow-lg transition-all duration-300 hover:bg-red-500 opacity-0 pointer-events-none"
+  class="fixed bottom-8 right-4 sm:right-8 z-50 h-8 w-8 sm:h-12 sm:w-12 rounded-full bg-red-400 text-white shadow-lg transition-all duration-300 hover:bg-red-500 opacity-0 pointer-events-none"
 >
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +28,19 @@
 
     if (!backToTopButton) return;
 
-    // Show/hide button based on scroll position
+    // Check if we're on mobile (less than 640px - Tailwind's sm breakpoint)
+    const isMobile = () => window.innerWidth < 640;
+
+    // Calculate if we're near the bottom of the page
+    const isNearPageEnd = () => {
+      const scrollTop = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      // Consider "near end" when within 150px of the bottom
+      return scrollTop + windowHeight >= documentHeight - 150;
+    };
+
+    // Show/hide button and adjust position based on scroll
     const toggleButtonVisibility = () => {
       if (window.scrollY > 300) {
         backToTopButton.classList.remove("opacity-0", "pointer-events-none");
@@ -36,6 +48,13 @@
       } else {
         backToTopButton.classList.remove("opacity-100");
         backToTopButton.classList.add("opacity-0", "pointer-events-none");
+      }
+
+      // On mobile, move button up when near page end to avoid footer collision
+      if (isMobile() && isNearPageEnd()) {
+        backToTopButton.style.bottom = "6rem"; // Move up above footer
+      } else {
+        backToTopButton.style.bottom = ""; // Reset to CSS default (2rem)
       }
     };
 
