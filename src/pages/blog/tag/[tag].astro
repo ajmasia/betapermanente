@@ -3,14 +3,9 @@ import { getCollection } from "astro:content";
 import type { CollectionEntry, GetStaticPaths } from "astro:content";
 
 import MainLayout from "../../../layouts/MainLayout/MainLayout.astro";
-import CalendarIcon from "../../../components/icons/CalendarIcon.astro";
-import ClockIcon from "../../../components/icons/ClockIcon.astro";
+import Card from "../../../components/Card.astro";
 import Tag from "../../../components/Tag.astro";
 import { SITE } from "../../../config.ts";
-import {
-  calculateReadingTime,
-  formatReadingTime,
-} from "../../../lib/readingTime.ts";
 
 type BlogPost = CollectionEntry<"blog">;
 
@@ -59,7 +54,7 @@ const originalTagName = posts[0]?.data.tags?.find(
   title={`${SITE.title}: ${originalTagName}`}
   description={`Artículos sobre ${originalTagName}`}
 >
-  <div class="container mx-auto">
+  <div class="container mx-auto md:max-w-[90%] lg:max-w-[95%] xl:max-w-7xl">
     <div class="mb-8">
       <a href="/blog" class="link text-sm">&larr; Volver al blog</a>
     </div>
@@ -70,41 +65,19 @@ const originalTagName = posts[0]?.data.tags?.find(
     <p class="text-slate-500 dark:text-slate-400 mb-8">
       {posts.length} {posts.length === 1 ? "artículo" : "artículos"}
     </p>
-    {
-      posts.map((post) => (
-        <article class="mb-8">
-          <h2 class="text-2xl font-semibold mb-2">
-            <a href={`/blog/${post.slug}`} class="link">
-              {post.data.title}
-            </a>
-          </h2>
-          {post.data.description && <p class="mb-2">{post.data.description}</p>}
-          <p class="flex text-slate-500 dark:text-slate-400 text-sm items-center mb-2">
-            <span class="inline-flex items-center gap-1">
-              <CalendarIcon class="h-4 w-4 flex-shrink-0" />
-              <span class="pt-0.5">
-                {post.data.date.toLocaleDateString("es-ES", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </span>
-            </span>
-            <span class="mx-2">·</span>
-            <span class="inline-flex items-center gap-1">
-              <ClockIcon class="h-4 w-4 flex-shrink-0" />
-              <span>{formatReadingTime(calculateReadingTime(post.body))}</span>
-            </span>
-          </p>
-          {post.data.tags && post.data.tags.length > 0 && (
-            <div class="flex flex-wrap gap-2">
-              {post.data.tags.map((t: string) => (
-                <Tag tag={t} />
-              ))}
-            </div>
-          )}
-        </article>
-      ))
-    }
+    <div class="md:grid md:grid-cols-2 md:gap-8 xl:block [&>article:last-child:nth-child(odd)]:md:col-span-2 [&>article:last-child:nth-child(odd)]:md:max-w-[calc(50%-1rem)] [&>article:last-child:nth-child(odd)]:md:mx-auto [&>article:last-child:nth-child(odd)]:xl:max-w-none">
+      {
+        posts.map((post) => (
+          <Card
+            post={post}
+            variant="horizontal"
+            showImage={true}
+            linkTags={true}
+            headingLevel="h2"
+            class="mb-18 sm:mb-14 md:mb-0 xl:mb-14 last:mb-0"
+          />
+        ))
+      }
+    </div>
   </div>
 </MainLayout>
