@@ -16,7 +16,7 @@ const isActiveHref = (current: string, href: string) =>
   current === href || (href !== "/" && current.startsWith(href));
 ---
 
-<header transition:animate="none" class="container mx-auto lg:flex pt-5">
+<header transition:animate="none" class="container mx-auto md:max-w-[90%] lg:max-w-[95%] xl:max-w-7xl lg:flex pt-5">
   <Astronav>
     <div class="flex w-full justify-between h-16">
       <!-- Logo -->
