@@ -2,6 +2,7 @@
 
 > Personal blog about software development, technology, and continuous learning.
 
+[![GitHub Release](https://img.shields.io/github/v/release/ajmasia/betapermanente?label=version)](https://github.com/ajmasia/betapermanente/releases)
 [![Built with Astro](https://astro.badg.es/v2/built-with-astro/tiny.svg)](https://astro.build)
 [![Astro](https://img.shields.io/badge/Astro-5.x-BC52EE?logo=astro&logoColor=white)](https://astro.build)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.x-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
@@ -17,6 +18,7 @@
 - Content Collections with Zod validation
 - Tailwind CSS v4 with dark mode
 - Global fuzzy search (Fuse.js)
+- Comments with Giscus (GitHub Discussions)
 - RSS feed and sitemap
 - SEO optimized (Open Graph, Twitter Cards)
 - Tag system with index page
@@ -70,7 +72,8 @@ public/
 | Document | Description |
 |----------|-------------|
 | [PUBLISHING.md](./PUBLISHING.md) | Step-by-step checklist for publishing blog posts |
-| [CONTRIBUTING.md](./CONTRIBUTING.md) | Git workflow, versioning, and contribution guidelines |
+| [CONTRIBUTING.md](./CONTRIBUTING.md) | Setup, code style, and contribution guidelines |
+| [RELEASING.md](./RELEASING.md) | Git workflow, versioning, and release process |
 
 ## License
 
