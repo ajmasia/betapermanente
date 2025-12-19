@@ -28,10 +28,6 @@ vuelves a tu escritorio recuperando su estado inicial, mostrando el desbloqueo d
 
 Te dejo por aquí un vídeo de demostración:
 
-  <video controls width="100%">
-    <source src="/video/demo_terminal-screensaver.mp4" type="video/mp4">
-  </video>
-
 ## Cómo instalarlo
 
 Necesitas un sistema [Debian](https://www.debian.org/) 13+ o [Ubuntu](https://ubuntu.com/) 22.04+ con GNOME y uno de estos terminales: [Alacritty](https://alacritty.org/),
@@ -125,9 +121,9 @@ e incluso de configuración.
 
 Te dejo por aquí algunos enlaces de interés relacionados con este proyecto:
 
-- Repositorio: <https://github.com/ajmasia/terminal-screensaver>
-- Terminal Text Effects: <https://github.com/ChrisBuilds/terminaltexteffects>
-- Omarchy (proyecto original): <https://omarchy.org>
+- [Repositorio](https://github.com/ajmasia/terminal-screensaver)
+- [Terminal Text Effects](https://github.com/ChrisBuilds/terminaltexteffects)
+- [Omarchy](https://omarchy.org)
 
 ## Aprendizajes
 
