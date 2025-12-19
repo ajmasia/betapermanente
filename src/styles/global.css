@@ -82,6 +82,15 @@ main {
   content: none;
 }
 
+/* Prevent tables and code blocks from causing horizontal overflow */
+.prose table {
+  @apply block overflow-x-auto;
+}
+
+.prose pre {
+  @apply overflow-x-auto;
+}
+
 h1 {
   @apply mb-4 text-4xl font-bold text-slate-600 dark:text-slate-300;
 }
