@@ -48,24 +48,24 @@ jobs:
           CHANGELOG=""
 
           if [ -n "$FEATURES" ]; then
-            CHANGELOG="${CHANGELOG}## Features\n${FEATURES}\n\n"
+            CHANGELOG="${CHANGELOG}## ✨ Features\n${FEATURES}\n\n"
           fi
 
           if [ -n "$FIXES" ]; then
-            CHANGELOG="${CHANGELOG}## Bug Fixes\n${FIXES}\n\n"
+            CHANGELOG="${CHANGELOG}## 🐛 Bug Fixes\n${FIXES}\n\n"
           fi
 
           if [ -n "$DOCS" ]; then
-            CHANGELOG="${CHANGELOG}## Documentation\n${DOCS}\n\n"
+            CHANGELOG="${CHANGELOG}## 📚 Documentation\n${DOCS}\n\n"
           fi
 
           if [ -n "$CHORES" ]; then
-            CHANGELOG="${CHANGELOG}## Maintenance\n${CHORES}\n\n"
+            CHANGELOG="${CHANGELOG}## 🔧 Maintenance\n${CHORES}\n\n"
           fi
 
           # If no categorized commits, show all
           if [ -z "$CHANGELOG" ]; then
-            CHANGELOG="## Changes\n${COMMITS}\n"
+            CHANGELOG="## 📋 Changes\n${COMMITS}\n"
           fi
 
           # Write to file for multiline support
