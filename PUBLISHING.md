@@ -4,7 +4,7 @@ Step-by-step checklist for publishing new blog posts.
 
 ## Quick Checklist
 
-- [ ] Create feature branch from `main`
+- [ ] Create `post/` branch from `main`
 - [ ] Create hero image (1200x630px)
 - [ ] Create markdown file with frontmatter
 - [ ] Write content
@@ -15,15 +15,15 @@ Step-by-step checklist for publishing new blog posts.
 
 ---
 
-## Step 1: Create Feature Branch
+## Step 1: Create Post Branch
 
 ```bash
 git checkout main
 git pull origin main
-git checkout -b feature/post-[post-slug]
+git checkout -b post/[post-slug]
 ```
 
-**Naming convention**: `feature/post-` + post slug (e.g., `feature/post-guia-docker`)
+**Naming convention**: `post/` + post slug (e.g., `post/guia-docker`)
 
 ---
 
@@ -180,14 +180,15 @@ git commit -m "feat: publish new post - [post-title]"
 ```bash
 git checkout main
 git pull origin main
-git merge feature/post-[post-slug]
+git merge post/[post-slug]
 git push origin main
 ```
 
 ### Cleanup
 
 ```bash
-git branch -d feature/post-[post-slug]
+git branch -d post/[post-slug]
+git push origin --delete post/[post-slug]
 ```
 
 ---
