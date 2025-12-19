@@ -10,6 +10,7 @@ import ClockIcon from "../../components/icons/ClockIcon.astro";
 import GitHubIcon from "../../components/icons/GitHubIcon.astro";
 import Tag from "../../components/Tag.astro";
 import Author from "../../components/Author.astro";
+import Comments from "../../components/Comments.astro";
 import PageViewsCounter from "../../components/PageViewsCounter.astro";
 import {
   calculateReadingTime,
@@ -96,5 +97,6 @@ const socialTitle = post.data.title;
       <Content />
     </Prose>
     {post.data.author && <Author authorId={post.data.author} />}
+    <Comments />
   </article>
 </MainLayout>

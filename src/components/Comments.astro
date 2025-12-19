@@ -1,0 +1,64 @@
+---
+// Giscus comments component
+// Docs: https://giscus.app/
+---
+
+<section class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-700">
+  <h2 class="text-xl font-semibold mb-6">Comentarios</h2>
+  <div class="giscus"></div>
+</section>
+
+<script>
+  function getGiscusTheme(): string {
+    const isDark = document.documentElement.classList.contains("dark");
+    return isDark ? "dark" : "light";
+  }
+
+  function loadGiscus() {
+    const container = document.querySelector(".giscus");
+    if (!container) return;
+
+    // Clear previous instance
+    container.innerHTML = "";
+
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.setAttribute("data-repo", "ajmasia/betapermanente");
+    script.setAttribute("data-repo-id", "R_kgDOQCFR8g");
+    script.setAttribute("data-category", "Blog Comments");
+    script.setAttribute("data-category-id", "DIC_kwDOQCFR8s4C0AUr");
+    script.setAttribute("data-mapping", "pathname");
+    script.setAttribute("data-strict", "1");
+    script.setAttribute("data-reactions-enabled", "1");
+    script.setAttribute("data-emit-metadata", "0");
+    script.setAttribute("data-input-position", "top");
+    script.setAttribute("data-theme", getGiscusTheme());
+    script.setAttribute("data-lang", "es");
+    script.setAttribute("data-loading", "lazy");
+    script.crossOrigin = "anonymous";
+    script.async = true;
+
+    container.appendChild(script);
+  }
+
+  function updateGiscusTheme() {
+    const iframe = document.querySelector<HTMLIFrameElement>(
+      "iframe.giscus-frame"
+    );
+    if (iframe) {
+      iframe.contentWindow?.postMessage(
+        { giscus: { setConfig: { theme: getGiscusTheme() } } },
+        "https://giscus.app"
+      );
+    }
+  }
+
+  // Load on initial page load
+  loadGiscus();
+
+  // Reload on Astro view transitions
+  document.addEventListener("astro:after-swap", loadGiscus);
+
+  // Update theme when toggled
+  document.addEventListener("theme-changed", updateGiscusTheme);
+</script>
