@@ -51,7 +51,7 @@ main {
 }
 
 .container {
-  @apply px-5 xl:px-15 2xl:px-15;
+  @apply px-5 md:max-w-[90%] lg:max-w-[95%] xl:max-w-7xl xl:px-15 2xl:px-15;
 }
 
 .link {
