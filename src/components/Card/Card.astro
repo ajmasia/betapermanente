@@ -31,7 +31,7 @@ const isHorizontal = variant === "horizontal";
 
 <article
   class:list={[
-    "card relative rounded-2xl bg-slate-50 dark:bg-slate-800 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-lg dark:hover:shadow-none",
+    "card relative rounded-2xl bg-slate-50 dark:bg-slate-800 overflow-hidden transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-lg dark:hover:shadow-none",
     {
       "xl:max-h-[210px] xl:flex xl:flex-row": isHorizontal,
     },
