@@ -48,7 +48,7 @@ html.dark {
   background-color: #111827; /* gray-900 */
 }
 
-/* View Transition: disabled to prevent white flash in dark mode */
+/* View Transition: disable animation to prevent white flash in dark mode */
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
