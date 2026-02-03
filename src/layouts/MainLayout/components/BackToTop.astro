@@ -82,6 +82,5 @@
   initBackToTop();
 
   // Reinitialize after View Transitions
-  document.addEventListener("astro:after-swap", initBackToTop);
   document.addEventListener("astro:page-load", initBackToTop);
 </script>
