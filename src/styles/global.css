@@ -48,20 +48,10 @@ html.dark {
   background-color: #111827; /* gray-900 */
 }
 
-/* View Transition: new view fades in over old (no flash) */
-::view-transition-old(root) {
-  animation: none;
-  z-index: 1;
-}
-
+/* View Transition: disabled to prevent white flash in dark mode */
+::view-transition-old(root),
 ::view-transition-new(root) {
-  animation: 200ms ease-out fade-in;
-  z-index: 2;
-}
-
-@keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  animation: none;
 }
 
 body {
