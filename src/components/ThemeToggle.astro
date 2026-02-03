@@ -18,25 +18,8 @@ import MoonIcon from "../icons/MoonIcon.astro";
 </button>
 
 <script>
-  const initTheme = () => {
-    const theme = (() => {
-      if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
-        return localStorage.getItem("theme") as string;
-      }
-      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        return "dark";
-      }
-      return "dark";
-    })();
-
-    if (theme === "light") {
-      document.documentElement.classList.remove("dark");
-    } else {
-      document.documentElement.classList.add("dark");
-    }
-
-    window.localStorage.setItem("theme", theme);
-  };
+  // Theme is already applied by the inline script in MainLayout.astro
+  // via astro:before-swap. This component only handles the toggle button.
 
   const updateIcon = () => {
     const isDark = document.documentElement.classList.contains("dark");
@@ -67,7 +50,6 @@ import MoonIcon from "../icons/MoonIcon.astro";
   };
 
   const setupThemeToggle = () => {
-    initTheme();
     updateIcon();
 
     const button = document.getElementById("theme-toggle");
