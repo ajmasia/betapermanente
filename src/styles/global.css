@@ -3,12 +3,12 @@
 @plugin '@tailwindcss/typography';
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Inter font - self-hosted with optional to prevent layout shift */
+/* Inter font - self-hosted with swap for View Transitions compatibility */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
-  font-display: optional;
+  font-display: swap;
   src: url('/fonts/inter-latin-400-normal.woff2') format('woff2');
 }
 
@@ -16,7 +16,7 @@
   font-family: 'Inter';
   font-style: normal;
   font-weight: 500;
-  font-display: optional;
+  font-display: swap;
   src: url('/fonts/inter-latin-500-normal.woff2') format('woff2');
 }
 
@@ -24,7 +24,7 @@
   font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
-  font-display: optional;
+  font-display: swap;
   src: url('/fonts/inter-latin-600-normal.woff2') format('woff2');
 }
 
@@ -32,12 +32,36 @@
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
-  font-display: optional;
+  font-display: swap;
   src: url('/fonts/inter-latin-700-normal.woff2') format('woff2');
 }
 
 @theme {
   --font-sans: "Inter", "sans-serif";
+}
+
+/* Prevent flash during View Transitions */
+html {
+  @apply bg-white;
+}
+html.dark {
+  background-color: #111827; /* gray-900 */
+}
+
+/* View Transition: new view fades in over old (no flash) */
+::view-transition-old(root) {
+  animation: none;
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  animation: 200ms ease-out fade-in;
+  z-index: 2;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 body {

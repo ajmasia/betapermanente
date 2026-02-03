@@ -10,7 +10,7 @@
 [![Node.js](https://img.shields.io/badge/Node.js-22.x-339933?logo=node.js&logoColor=white)](https://nodejs.org)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-**Live Site:** [permanentbeta.dev](https://permanentbeta.dev)
+**Live Site:** [betapermanente.link](https://betapermanente.link)
 
 ## Features
 
@@ -81,4 +81,4 @@ public/
 
 ## Author
 
-**Antonio Masiá** - [permanentbeta.dev](https://permanentbeta.dev)
+**Antonio Masiá** - [betapermanente.link](https://betapermanente.link)

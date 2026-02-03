@@ -31,10 +31,33 @@ const imageURL = new URL(image, SITE.url);
 ---
 
 <!doctype html>
-<html lang="es" class="dark">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Inline theme script to prevent flash on page load and View Transitions -->
+    <script is:inline>
+      function getTheme() {
+        return localStorage.getItem('theme') || 'dark';
+      }
+
+      function applyThemeToDocument(doc) {
+        if (getTheme() === 'dark') {
+          doc.documentElement.classList.add('dark');
+        } else {
+          doc.documentElement.classList.remove('dark');
+        }
+      }
+
+      // Apply on initial load
+      applyThemeToDocument(document);
+
+      // Before swap: apply theme to NEW document before View Transitions snapshot
+      document.addEventListener('astro:before-swap', (event) => {
+        applyThemeToDocument(event.newDocument);
+      });
+    </script>
 
     <!-- Preload fonts to prevent layout shift -->
     <link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
