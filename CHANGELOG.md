@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.8] - 2025-02-03
+
+### Fixed
+
+- **View Transitions flash in Chromium browsers**: Disabled view transition animation completely to prevent white flash in dark mode on Chrome/Brave. Firefox was not affected.
+  - Root transition now uses `animation: none` for both old and new views
+  - Theme is applied both before swap (`astro:before-swap`) and after swap (`astro:after-swap`) for reliability
+
+### Changed
+
+- **Card hover effects**: Simplified card interactions
+  - Removed transform and shadow effects on hover
+  - Title changes to accent color (`red-400`) on hover for clear interactivity feedback
+  - Adjusted transition duration to 200ms
+
+### Refactored
+
+- **ThemeToggle**: Removed redundant theme initialization since MainLayout inline script handles it
+- **BackToTop**: Removed duplicate `astro:after-swap` listener
+
 ## [1.3.7] - 2025-02-03
 
 ### Fixed
